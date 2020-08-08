@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="64dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="64dp"
+    android:background="@drawable/bg_dialog_sign"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textStyle="bold"
+        android:maxWidth="260dp"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@color/black"
+        android:textSize="19sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="89dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_graye5"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/gray9"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_save"
+            android:layout_width="89dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/bg_btn_orange"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="24dp">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_check_address"
+            android:checked="true"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="我已阅读并同意"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_xieyi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="《数字证书协议》"
+            android:textColor="#FF9B00"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,64 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="EditWhite" parent="AppTheme">
+        <item name="android:listDivider">@drawable/divider_bg</item>
+        <!--        <item name="android:textCursorDrawable">@color/colorPrimaryDark</item>-->
+        <!--输入框水滴颜色-->
+        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/white</item>
+        <!--输入框光标颜色-->
+        <item name="android:textCursorDrawable">@drawable/cursor_white</item>
+    </style>
+
+    <style name="EditBlack" parent="AppTheme">
+        <item name="android:listDivider">@drawable/divider_bg_black</item>
+        <!--        <item name="android:textCursorDrawable">@color/colorPrimaryDark</item>-->
+        <!--输入框水滴颜色-->
+        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/black</item>
+        <!--输入框光标颜色-->
+        <item name="android:textCursorDrawable">@drawable/cursor_black</item>
+        <item name="colorControlNormal">@color/black50</item>
+        <item name="colorControlActivated">@color/black</item>
+        <item name="android:colorControlNormal" tools:ignore="NewApi">@color/black50</item>
+    </style>
+
+    <style name="cb_test">
+        <!--波纹的颜色-->
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/black50</item>
+        <item name="android:colorControlNormal" tools:ignore="NewApi">@color/black50</item>
+        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/black50</item>
+        <item name="colorControlHighlight" tools:ignore="NewApi">@color/black50</item>
+        <item name="colorControlNormal" tools:ignore="NewApi">@color/black50</item>
+        <item name="colorControlActivated" tools:ignore="NewApi">@color/black50</item>
+        <item name="colorAccent">@color/black50</item>
+        <item name="colorPrimary">@color/black50</item>
+        <item name="colorPrimaryDark">@color/black50</item>
+    </style>
+
+    <!-- 防止欢迎页白屏或者黑屏，设置图片 -->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">false</item>
+    </style>
+
+    <style name="AppSplash" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 设置启动背景透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 设置启动不要Title -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_pintuan</item>
+    </style>
+
+</resources>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/icon_arrow_down_gray"
+        android:drawablePadding="4dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="茅台" />
+
+    <TextView
+        android:id="@+id/textCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:text="ABEY98"
+        android:textColor="@color/gray9"
+        android:textSize="17sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/textName"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toTopOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="￥300"
+        android:textColor="@color/orangefc"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textName" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/grayee"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_grayee"
+                android:paddingStart="48dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="48dp"
+                android:paddingBottom="8dp"
+                android:text="转让"
+                android:textColor="@color/black3"
+                android:textSize="15sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--搜索框-->
+            <EditText
+                android:id="@+id/editSearchPrice"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_grayee"
+                android:drawableStart="@drawable/icon_search"
+                android:drawablePadding="4dp"
+                android:hint="编号"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:singleLine="true"
+                android:textColor="@color/black3"
+                android:textColorHint="#ff999999"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+            <!--价格输入框-->
+            <LinearLayout
+                android:id="@+id/llPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                <TextView
+                    android:id="@+id/textBtnSubPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="当前市值："
+                    android:textColor="@color/black3"
+                    android:textSize="12sp" />
+
+                <!--                <View-->
+                <!--                    android:layout_width="1dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:background="@color/graybf" />-->
+
+                <TextView
+                    android:id="@+id/textPriceInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/black3"
+                    android:textSize="12sp"
+                    tools:text="￥1" />
+
+                <!--                <View-->
+                <!--                    android:layout_width="1dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:background="@color/graybf" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textBtnAddPrice"-->
+                <!--                    android:layout_width="28dp"-->
+                <!--                    android:layout_height="28dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_weight="0"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text="+"-->
+                <!--                    android:textColor="@color/black3"-->
+                <!--                    android:textSize="17sp" />-->
+
+            </LinearLayout>
+
+            <!--数量输入框-->
+            <LinearLayout
+                android:id="@+id/llNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_gray_boder"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/llPrice">
+
+                <TextView
+                    android:id="@+id/textBtnSubNumber"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="—"
+                    android:textColor="@color/black3"
+                    android:textSize="17sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/graybf" />
+
+                <EditText
+                    android:id="@+id/editNumberInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="数量"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/black3"
+                    android:textColorHint="@color/gray9"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/graybf" />
+
+                <TextView
+                    android:id="@+id/textBtnAddNumber"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/black3"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <!--可卖数量-->
+            <TextView
+                android:id="@+id/textCanUseNumberTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="可卖数量:"
+                android:textColor="@color/gray9"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/llNumber"
+                app:layout_constraintTop_toBottomOf="@+id/llNumber" />
+
+            <TextView
+                android:id="@+id/textCanUseNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/orangefc"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/textCanUseNumberTag"
+                app:layout_constraintStart_toEndOf="@+id/textCanUseNumberTag"
+                app:layout_constraintTop_toTopOf="@+id/textCanUseNumberTag"
+                tools:text="10" />
+
+            <LinearLayout
+                android:id="@+id/llTag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/grayee"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editSearchPrice">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="提示："
+                    android:textColor="@color/bottom_focus" />
+
+                <com.rice.view.CircleView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    app:cir_color="@color/orangefc" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:text="购买"
+                    android:textColor="@color/orangefc" />
+
+                <com.rice.view.CircleView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    app:cir_color="@color/green24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:text="卖出"
+                    android:textColor="@color/green24" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/editSearchPrice"
+                app:layout_constraintStart_toStartOf="@+id/editSearchPrice"
+                app:layout_constraintTop_toBottomOf="@+id/llTag">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="时间"
+                    android:textColor="@color/gray9"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="价格(￥)"
+                    android:textColor="@color/gray9"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/textNumberTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="数量(个)"
+                    android:textColor="@color/gray9"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!--价格表-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerTop"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="4dp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:text="求购"
+                android:textColor="@color/orangefc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recyclerTop" />
+
+            <View
+                android:id="@+id/lineRecycler1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/grayee"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerTop"
+                app:layout_constraintStart_toStartOf="@+id/recyclerTop"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerTop" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerBottom"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="4dp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="@+id/lineRecycler1"
+                app:layout_constraintStart_toStartOf="@+id/lineRecycler1"
+                app:layout_constraintTop_toBottomOf="@+id/lineRecycler1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:text="转让"
+                android:textColor="@color/green24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recyclerBottom" />
+
+            <View
+                android:id="@+id/lineRecycler2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/grayee"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerBottom"
+                app:layout_constraintStart_toStartOf="@+id/recyclerBottom"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerBottom" />
+
+            <TextView
+                android:id="@+id/textSellNow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_btn_extract"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="立即购买"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/lineRecycler2"
+                app:layout_constraintStart_toStartOf="@+id/lineRecycler2"
+                app:layout_constraintTop_toBottomOf="@+id/lineRecycler2" />
+
+            <LinearLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textSellNow">
+
+                <ImageView
+                    android:id="@+id/imgLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/icon_cpq_left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="交易记录"
+                    android:textColor="@color/bottom_focus"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/icon_cpq_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查询"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grayee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+            <!--            <include-->
+            <!--                android:id="@+id/llHistoryTag"-->
+            <!--                layout="@layout/include_header_history"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never" />
+
+                <include
+                    android:id="@+id/frameNoLogin"
+                    layout="@layout/include_no_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
+
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/llSearchClass"
+            layout="@layout/include_search_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

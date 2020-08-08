@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black31"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/textCode"
+        app:layout_constraintStart_toStartOf="@+id/img"
+        app:layout_constraintTop_toBottomOf="@+id/img"
+        tools:text="福建白茶" />
+
+    <TextView
+        android:id="@+id/textCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BC0123 "
+        android:textColor="@color/gray9"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textName"
+        app:layout_constraintEnd_toEndOf="@+id/img"
+        app:layout_constraintTop_toTopOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="￥200+1500分"
+        android:textColor="@color/orangefc"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textCompanyname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#9F9F9F"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textPrice"
+        app:layout_constraintEnd_toEndOf="@+id/img"
+        app:layout_constraintTop_toTopOf="@+id/textPrice" />
+
+    <TextView
+        android:id="@+id/textBtnExchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_btn_exchange_market_jf"
+        android:paddingStart="20dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="4dp"
+        android:text="兑换"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textPrice"
+        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

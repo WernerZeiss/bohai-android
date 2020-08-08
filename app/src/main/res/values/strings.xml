@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">渤海P2C</string>
+    <string name="log_out"><u>退出登录</u></string>
+    <string name="help_center">新手帮助</string>
+    <string name="CNY">￥</string>
+    <string name="sign_agreement">电子协议</string>
+</resources>

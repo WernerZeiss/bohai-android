@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="23dp"
+    android:paddingTop="5dp"
+    android:paddingRight="23dp"
+    android:paddingBottom="5dp">
+
+    <FrameLayout
+        android:id="@+id/framelayout_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imageview_logo"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textMobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/orangef7"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:textColor="@color/orangef7"
+        android:textSize="12sp" />
+
+
+</FrameLayout>

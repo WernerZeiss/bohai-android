@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.rice.view.RiceToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="提货" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graye5" />
+
+    <TextView
+        android:id="@+id/textAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/vector_icon_arrow_right_gray9"
+        android:padding="16dp"
+        android:textColor="@color/gray9"
+        android:textSize="16sp"
+        android:text="点击选择收货地址" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/graye5" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/editNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        android:hint="提货数量"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        app:met_baseColor="@color/black"
+        app:met_floatingLabel="normal"
+        app:met_primaryColor="@color/black" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/editRemarks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        android:hint="备注（选填）"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        app:met_baseColor="@color/black"
+        app:met_floatingLabel="normal"
+        app:met_primaryColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="提货数量："
+        android:textColor="@color/grayc"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textFare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="运费：包邮"
+        android:textColor="@color/grayc"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textBtnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bg_btn_orange"
+        android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>

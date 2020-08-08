@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+        android:paddingBottom="56dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:background="@null"
+            android:hint="手机号"
+            android:inputType="number"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black50"
+            android:textSize="18sp"
+            android:theme="@style/EditBlack"
+            app:met_baseColor="@color/black"
+            app:met_errorColor="@color/navi_bottom"
+            app:met_floatingLabel="normal"
+            app:met_maxCharacters="11"
+            app:met_primaryColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/editVer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="验证码"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black50"
+                android:textSize="18sp"
+                android:theme="@style/EditBlack"
+                app:met_baseColor="@color/black"
+                app:met_errorColor="@color/navi_bottom"
+                app:met_floatingLabel="normal"
+                app:met_primaryColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textSendVer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0"
+                android:background="@drawable/bg_btn_black"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="发送验证码"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@null"
+            android:hint="输入密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black50"
+            android:textSize="18sp"
+            android:theme="@style/EditBlack"
+            app:met_baseColor="@color/black"
+            app:met_errorColor="@color/navi_bottom"
+            app:met_floatingLabel="normal"
+            app:met_primaryColor="@color/black" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@null"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black50"
+            android:textSize="18sp"
+            android:theme="@style/EditBlack"
+            app:met_baseColor="@color/black"
+            app:met_errorColor="@color/navi_bottom"
+            app:met_floatingLabel="normal"
+            app:met_primaryColor="@color/black" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editInvCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@null"
+            android:hint="邀请码"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black50"
+            android:textSize="18sp"
+            android:theme="@style/EditBlack"
+            app:met_baseColor="@color/black"
+            app:met_errorColor="@color/navi_bottom"
+            app:met_floatingLabel="normal"
+            app:met_primaryColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textBtnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/bg_btn_black50"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="立即注册"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/llXieyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxXieyi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_check_black"
+                android:paddingStart="4dp"
+                android:text="注册即代表您同意"
+                android:textColor="@color/black50"
+                android:textSize="12sp"
+                android:theme="@style/cb_test" />
+
+            <TextView
+                android:id="@+id/textXieyi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="《渤海交易用户协议》"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

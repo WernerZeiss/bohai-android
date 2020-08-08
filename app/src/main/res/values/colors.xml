@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F39700</color>
+    <color name="colorPrimaryDark">#80F39700</color>
+    <color name="colorAccent">#F39700</color>
+    <color name="white50">#80ffffff</color>
+    <color name="login_bottom">#fc551b</color>
+    <color name="black31">#313131</color>
+    <color name="black33">#333333</color>
+    <color name="grayf4">#f4f4f4</color>
+    <color name="grayee">#eeeeee</color>
+    <color name="bottom_focus">#F39700</color>
+    <color name="orangefc">#FC561B</color>
+    <color name="orangef9">#FF9502</color>
+    <color name="orangef7">#FF7814</color>
+    <color name="yellowfc">#F39301</color>
+    <color name="gray8">#888888</color>
+    <color name="gray6">#666666</color>
+    <color name="graybf">#bfbfbf</color>
+    <color name="green24">#24A843</color>
+    <color name="black1e">#1e1e1e</color>
+    <color name="gray5b">#5b5b5b</color>
+    <color name="graydc">#dcdcdc</color>
+    <color name="cir_in">#FFAB00</color>
+    <color name="cir_out">#FFD782</color>
+    <color name="navi_bottom">#FD5F5E</color>
+    <color name="navi_bottom2">#EB8354</color>
+    <color name="grayc">#cccccc</color>
+    <color name="gray80">#808080</color>
+    <color name="new_login_bottom">#C1E9FB</color>
+    <color name="welcome_bottom">#C0DAFB</color>
+    <color name="black27">#272727</color>
+</resources>

@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.rice.bohai"
+        multiDexEnabled true//开启突破64K方法数的限制
+        minSdkVersion 22
+        targetSdkVersion 29
+//        versionCode 62
+        versionCode 999
+        versionName "1.3.3"//锁定为新域名
+//        versionName "1.3.1"//锁定为新域名
+//        versionName "0.9.55 alpha"//可以自由切换域名
+//        versionName "0.9.55 sita"//锁定为老域名
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        debug {
+            keyAlias 'bohai'
+            keyPassword 'bohai123'
+//            storeFile file('E:/ZhuGeLiang/xiche.jks')
+//            storeFile file('E:/AndroidProjects/bohai/bohai.jks')
+            storeFile file('../bohai.jks')
+//            storeFile file('/Users/taotao/项目/Android/ZhuGeLiang/xiche.jks')
+            storePassword 'bohai123'
+        }
+    }
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    //testImplementation 'junit:junit:4.12'
+    //androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    //androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'me.jessyan:autosize:1.1.2'//今日头条改良版适配
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.android.support:multidex:1.0.3'//突破64K方法数的限制
+    implementation 'com.mikhaellopez:circularfillableloaders:1.3.2'
+    implementation 'com.liulishuo.filedownloader:library:1.7.6'//下载工具
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.4.2'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
+//    implementation 'com.github.imcloudfloating:ProgressBar:1.1'//进度条按钮
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'//MaterEditText
+    implementation 'pub.devrel:easypermissions:3.0.0'//权限管理
+//    implementation 'net.frakbot:jumpingbeans:1.3.0'//跳豆文本加载效果
+    implementation 'com.github.demoNo:AutoScrollViewPager:v1.0.2'//自动切换Viewpager，用于Banner
+//    implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:2.0.24'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'//微信分享
+    implementation 'com.github.tyhjh:PermissionUtil:v1.0.2'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'//PDF控件
+    api project(path: ':riceframe')
+    api project(path: ':progressbar')
+    implementation('com.xyzlf.share:sharesdk:0.0.11') {//分享SDK
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+//    implementation 'org.greenrobot:eventbus:3.1.1' //EventBus
+
+}

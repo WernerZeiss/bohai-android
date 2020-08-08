@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Bohai.iml" filepath="$PROJECT_DIR$/.idea/modules/Bohai.iml" group="Bohai" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Bohai/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/progressbar/progressbar.iml" filepath="$PROJECT_DIR$/.idea/modules/progressbar/progressbar.iml" group="Bohai/progressbar" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/riceframe/riceframe.iml" filepath="$PROJECT_DIR$/.idea/modules/riceframe/riceframe.iml" group="Bohai/riceframe" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:background="@null"
+        android:hint="账号"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black50"
+        android:textSize="18sp"
+        android:theme="@style/EditBlack"
+        app:met_baseColor="@color/black"
+        app:met_errorColor="@color/navi_bottom"
+        app:met_floatingLabel="normal"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/black" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@null"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black50"
+        android:textSize="18sp"
+        android:theme="@style/EditBlack"
+        app:met_baseColor="@color/black"
+        app:met_errorColor="@color/navi_bottom"
+        app:met_floatingLabel="normal"
+        app:met_primaryColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textBtnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/bg_btn_black50"
+        android:gravity="center"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="登录"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textForgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="忘记密码"
+        android:textColor="@color/black50"
+        android:textSize="14sp" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="60dp">
+
+        <CheckBox
+            android:id="@+id/checkbox_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_check_black"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingBottom="8dp"
+            android:text="登录即代表您同意"
+            android:textColor="@color/black33"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textview_xieyi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="《隐私声明》"
+            android:textColor="@color/black33"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>
