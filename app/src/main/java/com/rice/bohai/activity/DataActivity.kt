@@ -96,7 +96,7 @@ class DataActivity : RiceBaseActivity() {
             }
             MODE_XSPHDE -> {
                 //销售配货明细
-                toolbar.setTitle("销售配货明细")
+                toolbar.setTitle("配货券明细")
                 var lp = recycler.layoutParams as SmartRefreshLayout.LayoutParams
                 lp.marginEnd = mContext.resources.getDimensionPixelOffset(R.dimen.dp_8)
                 lp.topMargin = mContext.resources.getDimensionPixelOffset(R.dimen.dp_8)

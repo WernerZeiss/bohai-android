@@ -27,18 +27,18 @@ import kotlinx.android.synthetic.main.activity_bind_bank_card.*
 @SuppressLint("Registered")
 class BindBankCardActivity : RiceBaseActivity() {
 
-    var mode = MODE_BANK_CARD
-    var inputList: MutableList<InputModel> = ArrayList()
-    lateinit var inputAdapter: InputAdapter
-    lateinit var textSelectDialog: TextSelectDialog
-    var bankList: MutableList<BankModel> = ArrayList()
+//    var mode = MODE_BANK_CARD
+//    var inputList: MutableList<InputModel> = ArrayList()
+//    lateinit var inputAdapter: InputAdapter
+//    lateinit var textSelectDialog: TextSelectDialog
+//    var bankList: MutableList<BankModel> = ArrayList()
     lateinit var loadingDialog: RLoadingDialog
 
-    companion object {
-        @JvmField
-        val MODE_ALIPAY = 0
-        val MODE_BANK_CARD = 1
-    }
+//    companion object {
+//        @JvmField
+//        val MODE_ALIPAY = 0
+//        val MODE_BANK_CARD = 1
+//    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_bind_bank_card
@@ -46,236 +46,53 @@ class BindBankCardActivity : RiceBaseActivity() {
 
     override fun initView() {
         loadingDialog = RLoadingDialog(mContext, true)
-        recycler.layoutManager = LinearLayoutManager(mContext)
-        inputAdapter = InputAdapter(mContext, inputList)
-        recycler.adapter = inputAdapter
-        initMode()
-    }
+//        recycler.layoutManager = LinearLayoutManager(mContext)
+//        inputAdapter = InputAdapter(mContext, inputList)
+//        recycler.adapter = inputAdapter
+//        initMode()
 
-    private fun initMode() {
-        when (mode) {
-            MODE_ALIPAY -> {
-                initAlipayMode()
-            }
-            MODE_BANK_CARD -> {
-                initBankCardMode()
-                //                if (MyApplication.instance.userInfo?.is_valid == 0) {
-                //                    textBtnSubmit.visibility = View.VISIBLE
-                //                } else {
-                //                    textBtnSubmit.visibility = View.GONE
-                //                }
-            }
-        }
-        inputAdapter.notifyDataSetChanged()
-    }
-
-    /**
-     * 初始化绑定银行卡
-     */
-    private fun initBankCardMode() {
-        getBanks()
-        textSelectDialog = TextSelectDialog(mContext)
-        toolbar.setTitle("实名认证")
-        inputList.clear()
-        var model = InputModel(
-                "id_name", "姓名", "请输入开户人姓名", MyApplication.instance.userInfo?.id_name
-                ?: ""
-        )
-        inputList.add(model)
-        model = InputModel(
-                "bank_number", "银行卡号", "请输入您的银行卡号", MyApplication.instance.userInfo?.bank_number
-                ?: ""
-        )
-        inputList.add(model)
-        model = InputModel(
-                "id_number", "身份证号码", "请输入您的身份证号码", MyApplication.instance.userInfo?.id_number
-                ?: ""
-        )
-        inputList.add(model)
-        model = InputModel(
-                "bank_id", "银行", "请选择银行", MyApplication.instance.userInfo?.bank_id
-                ?: "", InputModel.MODE_TEXT
-        )
-        inputList.add(model)
-        model = InputModel(
-                "subbranch", "支行名称", "请输入开户支行名称", MyApplication.instance.userInfo?.subbranch
-                ?: ""
-        )
-        inputList.add(model)
-        //        model = InputModel("province", "省份", "请输入开户行所在省份", "")
-        //        inputList.add(model)
-        model = InputModel(
-                "city", "城市", "请选择开户行所在城市", (MyApplication.instance.userInfo?.province
-                ?: "") + "-" + (MyApplication.instance.userInfo?.city ?: ""), InputModel.MODE_TEXT
-        )
-        inputList.add(model)
-        model = InputModel("bank_mobile", "银行预留手机号", "请输入手机号", (MyApplication.instance.userInfo?.bank_mobile ?: ""))
-        inputList.add(model)
         if (MyApplication.instance.userInfo?.is_valid == 1) {
-            for (item in inputList) {
-                item.mode = InputModel.MODE_TEXT
-            }
-            inputAdapter.notifyDataSetChanged()
+            et_name.isEnabled = false
+            et_idcard.isEnabled = false
             textBtnSubmit.text = "修改"
-            textBtnSubmit.setOnClickListener {
-                for (item in inputList) {
-                    if (inputList.indexOf(item) == 3 || inputList.indexOf(item) == 5) {
-                        item.mode = InputModel.MODE_TEXT
-                    } else {
-                        item.mode = InputModel.MODE_EDIT
-                    }
-                }
-                inputAdapter.setOnItemChildClickListener { adapter, view, position ->
-                    //            if (MyApplication.instance.userInfo?.is_valid == 0) {
-                    when (position) {
-                        3 -> {
-                            //选择银行
-                            textSelectDialog.onOkClickListener = object : TextSelectDialog.OnOkClickListener {
-                                override fun onOkClick(str: String) {
-                                    inputList[3].text = str
-                                    inputAdapter.notifyItemChanged(3)
-                                }
-                            }
-                            if (!textSelectDialog.isShowing) {
-                                textSelectDialog.show()
-                            }
-                        }
-                        5 -> {
-                            //选择城市
-                            CitySelecterDialog.setOnSelectedListener { provinceId, cityId, provinceName, cityName ->
-                                inputList[5].text = "$provinceName-$cityName"
-                                inputAdapter.notifyItemChanged(5)
-                            }
-                            CitySelecterDialog.getInstance(this)
-                        }
-                    }
-                    //            }
-                }
-                inputAdapter.notifyDataSetChanged()
-                textBtnSubmit.text = "提交"
-                textBtnSubmit.setOnClickListener { bindBankCard() }
-            }
         } else {
-            textBtnSubmit.setOnClickListener { bindBankCard() }
-            inputAdapter.setOnItemChildClickListener { adapter, view, position ->
-                //            if (MyApplication.instance.userInfo?.is_valid == 0) {
-                when (position) {
-                    3 -> {
-                        //选择银行
-                        textSelectDialog.onOkClickListener = object : TextSelectDialog.OnOkClickListener {
-                            override fun onOkClick(str: String) {
-                                inputList[3].text = str
-                                inputAdapter.notifyItemChanged(3)
-                            }
-                        }
-                        if (!textSelectDialog.isShowing) {
-                            textSelectDialog.show()
-                        }
-                    }
-                    5 -> {
-                        //选择城市
-                        CitySelecterDialog.setOnSelectedListener { provinceId, cityId, provinceName, cityName ->
-                            inputList[5].text = "$provinceName-$cityName"
-                            inputAdapter.notifyItemChanged(5)
-                        }
-                        CitySelecterDialog.getInstance(this)
-                    }
+            et_name.isEnabled = true
+            et_idcard.isEnabled = true
+            textBtnSubmit.text = "确定"
+        }
+        et_name.setText(MyApplication.instance.userInfo?.id_name ?: "")
+        et_idcard.setText(MyApplication.instance.userInfo?.id_number ?: "")
+
+        textBtnSubmit.setOnClickListener {
+            if (textBtnSubmit.text.toString() == "修改") {
+                et_name.isEnabled = true
+                et_idcard.isEnabled = true
+                textBtnSubmit.text = "确定"
+            } else {
+                if (TextUtils.isEmpty(et_name.text.toString())) {
+                    ToastUtil.showShort("请输入姓名~")
+                    return@setOnClickListener
                 }
-                //            }
+                if (TextUtils.isEmpty(et_idcard.text.toString())) {
+                    ToastUtil.showShort("请输入身份证号码~")
+                    return@setOnClickListener
+                }
+
+                realName()
             }
         }
     }
 
-    /**
-     * 初始化绑定支付宝
-     */
-    private fun initAlipayMode() {
-        inputList.clear()
-        var model = InputModel("ali_name", "姓名", "请输入您的真实姓名", "")
-        inputList.add(model)
-        model = InputModel("ali_number", "支付宝账号", "请输入您的支付宝账号", "")
-        inputList.add(model)
-        //        textBtnSubmit.setOnClickListener { bindAliPay() }
-    }
-
-    /**
-     * 加载银行列表
-     */
-    fun getBanks() {
+    //实名认证
+    private fun realName() {
+        val name = et_name.text.toString().trim()
+        val idNum = et_idcard.text.toString().trim()
         Http.post {
-            url = RiceHttpK.getUrl(Constant.BANK_LIST)
-            onSuccess { byts ->
-                Log.i("hel->", url)
-                val result = RiceHttpK.getResult(mContext,byts)
-                if (TextUtils.isNotEmpty(result)) {
-                    val model: BankListModel = StringNullAdapter.gson.fromJson(result)
-                    var strList: MutableList<String> = ArrayList()
-                    for (item in model.lists) {
-                        strList.add(item.name)
-                    }
-                    bankList.clear()
-                    bankList.addAll(model.lists)
-                    textSelectDialog.setData(strList)
-                    if (TextUtils.isNotEmpty(MyApplication.instance.userInfo?.bank_id)) {
-                        for (item in bankList) {
-                            if (item.id.toString() == MyApplication.instance.userInfo?.bank_id) {
-                                inputList[3].text = item.name
-                                inputAdapter.notifyItemChanged(3)
-                            }
-                        }
-                    }
-                }
-            }
-            onFail { error ->
-                var message = error.message
-                if ((error.message ?: "").contains("java")) {
-                    message = "未知错误"
-                }
-                ToastUtil.showShort(message)
-            }
-        }
-    }
-
-    /**
-     * 绑定银行卡
-     */
-    fun bindBankCard() {
-        for (item in inputList) {
-            if (TextUtils.isEmpty(item.text)) {
-                ToastUtil.showShort(item.hint)
-                return
-            }
-        }
-        if (MyApplication.instance.userInfo == null || TextUtils.isEmpty(MyApplication.instance.userInfo!!.access_token)) {
-            ToastUtil.showShort("请先登录")
-            ActivityUtils.openActivity(mContext, LoginActivity::class.java)
-            return
-        }
-        Http.post {
-            url = RiceHttpK.getUrl(Constant.BIND_BANK)
+            url = RiceHttpK.getUrl(Constant.REAL_NAME)
             params {
                 "access_token" - MyApplication.instance.userInfo!!.access_token
-                for (item in inputList) {
-                    if (item.parameName == "city") {
-                        //取省市
-                        "province" - item.text.substring(0, item.text.indexOf("-"))
-                        "city" - item.text.substring(item.text.indexOf("-") + 1)
-                    } else if (item.parameName == "bank_id") {
-                        //取银行ID
-                        for (itemBank in bankList) {
-                            if (itemBank.name == item.text) {
-                                "bank_id" - itemBank.id.toString()
-                                break
-                            }
-                        }
-                    } else {
-                        //直接传输输入的字段
-                        //                        if (MyApplication.instance.userInfo?.is_valid == 1) {
-                        //                            if(item.parameName=="")
-                        //                        }
-                        item.parameName - item.text
-                    }
-                }
+                "id_name" - name
+                "id_number" - idNum
             }
             onStart {
                 if (!loadingDialog.isShowing) {
@@ -286,8 +103,7 @@ class BindBankCardActivity : RiceBaseActivity() {
                 loadingDialog.dismiss()
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
-                val result = RiceHttpK.getResult(mContext,byts)
+                val result = RiceHttpK.getResult(mContext, byts)
                 if (TextUtils.isNotEmpty(result)) {
                     setResult(Activity.RESULT_OK)
                     ToastUtil.showShort("实名认证提交成功")
@@ -305,6 +121,260 @@ class BindBankCardActivity : RiceBaseActivity() {
             }
         }
     }
+
+//    private fun initMode() {
+//        when (mode) {
+//            MODE_ALIPAY -> {
+//                initAlipayMode()
+//            }
+//            MODE_BANK_CARD -> {
+//                initBankCardMode()
+//                //                if (MyApplication.instance.userInfo?.is_valid == 0) {
+//                //                    textBtnSubmit.visibility = View.VISIBLE
+//                //                } else {
+//                //                    textBtnSubmit.visibility = View.GONE
+//                //                }
+//            }
+//        }
+//        inputAdapter.notifyDataSetChanged()
+//    }
+
+//    /**
+//     * 初始化绑定银行卡
+//     */
+//    private fun initBankCardMode() {
+//        getBanks()
+//        textSelectDialog = TextSelectDialog(mContext)
+//        toolbar.setTitle("实名认证")
+//        inputList.clear()
+//        var model = InputModel(
+//                "id_name", "姓名", "请输入开户人姓名", MyApplication.instance.userInfo?.id_name
+//                ?: ""
+//        )
+//        inputList.add(model)
+//        model = InputModel(
+//                "bank_number", "银行卡号", "请输入您的银行卡号", MyApplication.instance.userInfo?.bank_number
+//                ?: ""
+//        )
+//        inputList.add(model)
+//        model = InputModel(
+//                "id_number", "身份证号码", "请输入您的身份证号码", MyApplication.instance.userInfo?.id_number
+//                ?: ""
+//        )
+//        inputList.add(model)
+//        model = InputModel(
+//                "bank_id", "银行", "请选择银行", MyApplication.instance.userInfo?.bank_id
+//                ?: "", InputModel.MODE_TEXT
+//        )
+//        inputList.add(model)
+//        model = InputModel(
+//                "subbranch", "支行名称", "请输入开户支行名称", MyApplication.instance.userInfo?.subbranch
+//                ?: ""
+//        )
+//        inputList.add(model)
+//        //        model = InputModel("province", "省份", "请输入开户行所在省份", "")
+//        //        inputList.add(model)
+//        model = InputModel(
+//                "city", "城市", "请选择开户行所在城市", (MyApplication.instance.userInfo?.province
+//                ?: "") + "-" + (MyApplication.instance.userInfo?.city ?: ""), InputModel.MODE_TEXT
+//        )
+//        inputList.add(model)
+//        model = InputModel("bank_mobile", "银行预留手机号", "请输入手机号", (MyApplication.instance.userInfo?.bank_mobile ?: ""))
+//        inputList.add(model)
+//        if (MyApplication.instance.userInfo?.is_valid == 1) {
+//            for (item in inputList) {
+//                item.mode = InputModel.MODE_TEXT
+//            }
+//            inputAdapter.notifyDataSetChanged()
+//            textBtnSubmit.text = "修改"
+//            textBtnSubmit.setOnClickListener {
+//                for (item in inputList) {
+//                    if (inputList.indexOf(item) == 3 || inputList.indexOf(item) == 5) {
+//                        item.mode = InputModel.MODE_TEXT
+//                    } else {
+//                        item.mode = InputModel.MODE_EDIT
+//                    }
+//                }
+//                inputAdapter.setOnItemChildClickListener { adapter, view, position ->
+//                    //            if (MyApplication.instance.userInfo?.is_valid == 0) {
+//                    when (position) {
+//                        3 -> {
+//                            //选择银行
+//                            textSelectDialog.onOkClickListener = object : TextSelectDialog.OnOkClickListener {
+//                                override fun onOkClick(str: String) {
+//                                    inputList[3].text = str
+//                                    inputAdapter.notifyItemChanged(3)
+//                                }
+//                            }
+//                            if (!textSelectDialog.isShowing) {
+//                                textSelectDialog.show()
+//                            }
+//                        }
+//                        5 -> {
+//                            //选择城市
+//                            CitySelecterDialog.setOnSelectedListener { provinceId, cityId, provinceName, cityName ->
+//                                inputList[5].text = "$provinceName-$cityName"
+//                                inputAdapter.notifyItemChanged(5)
+//                            }
+//                            CitySelecterDialog.getInstance(this)
+//                        }
+//                    }
+//                    //            }
+//                }
+//                inputAdapter.notifyDataSetChanged()
+//                textBtnSubmit.text = "提交"
+//                textBtnSubmit.setOnClickListener { bindBankCard() }
+//            }
+//        } else {
+//            textBtnSubmit.setOnClickListener { bindBankCard() }
+//            inputAdapter.setOnItemChildClickListener { adapter, view, position ->
+//                //            if (MyApplication.instance.userInfo?.is_valid == 0) {
+//                when (position) {
+//                    3 -> {
+//                        //选择银行
+//                        textSelectDialog.onOkClickListener = object : TextSelectDialog.OnOkClickListener {
+//                            override fun onOkClick(str: String) {
+//                                inputList[3].text = str
+//                                inputAdapter.notifyItemChanged(3)
+//                            }
+//                        }
+//                        if (!textSelectDialog.isShowing) {
+//                            textSelectDialog.show()
+//                        }
+//                    }
+//                    5 -> {
+//                        //选择城市
+//                        CitySelecterDialog.setOnSelectedListener { provinceId, cityId, provinceName, cityName ->
+//                            inputList[5].text = "$provinceName-$cityName"
+//                            inputAdapter.notifyItemChanged(5)
+//                        }
+//                        CitySelecterDialog.getInstance(this)
+//                    }
+//                }
+//                //            }
+//            }
+//        }
+//    }
+
+//    /**
+//     * 初始化绑定支付宝
+//     */
+//    private fun initAlipayMode() {
+//        inputList.clear()
+//        var model = InputModel("ali_name", "姓名", "请输入您的真实姓名", "")
+//        inputList.add(model)
+//        model = InputModel("ali_number", "支付宝账号", "请输入您的支付宝账号", "")
+//        inputList.add(model)
+//        //        textBtnSubmit.setOnClickListener { bindAliPay() }
+//    }
+//
+//    /**
+//     * 加载银行列表
+//     */
+//    fun getBanks() {
+//        Http.post {
+//            url = RiceHttpK.getUrl(Constant.BANK_LIST)
+//            onSuccess { byts ->
+//                Log.i("hel->", url)
+//                val result = RiceHttpK.getResult(mContext,byts)
+//                if (TextUtils.isNotEmpty(result)) {
+//                    val model: BankListModel = StringNullAdapter.gson.fromJson(result)
+//                    var strList: MutableList<String> = ArrayList()
+//                    for (item in model.lists) {
+//                        strList.add(item.name)
+//                    }
+//                    bankList.clear()
+//                    bankList.addAll(model.lists)
+//                    textSelectDialog.setData(strList)
+//                    if (TextUtils.isNotEmpty(MyApplication.instance.userInfo?.bank_id)) {
+//                        for (item in bankList) {
+//                            if (item.id.toString() == MyApplication.instance.userInfo?.bank_id) {
+//                                inputList[3].text = item.name
+//                                inputAdapter.notifyItemChanged(3)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            onFail { error ->
+//                var message = error.message
+//                if ((error.message ?: "").contains("java")) {
+//                    message = "未知错误"
+//                }
+//                ToastUtil.showShort(message)
+//            }
+//        }
+//    }
+
+//    /**
+//     * 绑定银行卡
+//     */
+//    fun bindBankCard() {
+//        for (item in inputList) {
+//            if (TextUtils.isEmpty(item.text)) {
+//                ToastUtil.showShort(item.hint)
+//                return
+//            }
+//        }
+//        if (MyApplication.instance.userInfo == null || TextUtils.isEmpty(MyApplication.instance.userInfo!!.access_token)) {
+//            ToastUtil.showShort("请先登录")
+//            ActivityUtils.openActivity(mContext, LoginActivity::class.java)
+//            return
+//        }
+//        Http.post {
+//            url = RiceHttpK.getUrl(Constant.BIND_BANK)
+//            params {
+//                "access_token" - MyApplication.instance.userInfo!!.access_token
+//                for (item in inputList) {
+//                    if (item.parameName == "city") {
+//                        //取省市
+//                        "province" - item.text.substring(0, item.text.indexOf("-"))
+//                        "city" - item.text.substring(item.text.indexOf("-") + 1)
+//                    } else if (item.parameName == "bank_id") {
+//                        //取银行ID
+//                        for (itemBank in bankList) {
+//                            if (itemBank.name == item.text) {
+//                                "bank_id" - itemBank.id.toString()
+//                                break
+//                            }
+//                        }
+//                    } else {
+//                        //直接传输输入的字段
+//                        //                        if (MyApplication.instance.userInfo?.is_valid == 1) {
+//                        //                            if(item.parameName=="")
+//                        //                        }
+//                        item.parameName - item.text
+//                    }
+//                }
+//            }
+//            onStart {
+//                if (!loadingDialog.isShowing) {
+//                    loadingDialog.show()
+//                }
+//            }
+//            onFinish {
+//                loadingDialog.dismiss()
+//            }
+//            onSuccess { byts ->
+//                Log.i("hel->", url)
+//                val result = RiceHttpK.getResult(mContext,byts)
+//                if (TextUtils.isNotEmpty(result)) {
+//                    setResult(Activity.RESULT_OK)
+//                    ToastUtil.showShort("实名认证提交成功")
+//                    MyApplication.instance.userInfo?.is_valid = 1
+//                    MyApplication.instance.getUserInfoFromWeb()
+//                    finish()
+//                }
+//            }
+//            onFail { error ->
+//                var message = error.message
+//                if ((error.message ?: "").contains("java")) {
+//                    message = "未知错误"
+//                }
+//                ToastUtil.showShort(message)
+//            }
+//        }
+//    }
 
     //    /**
     //     * 绑定支付宝
@@ -365,13 +435,13 @@ class BindBankCardActivity : RiceBaseActivity() {
     //    }
 
     override fun getIntentData() {
-        if (intent?.extras != null) {
-            mode = intent?.extras?.getInt("mode", MODE_BANK_CARD) ?: MODE_BANK_CARD
-        }
+//        if (intent?.extras != null) {
+//            mode = intent?.extras?.getInt("mode", MODE_BANK_CARD) ?: MODE_BANK_CARD
+//        }
     }
 
     override fun clear() {
-        inputList.clear()
+//        inputList.clear()
     }
 
 }

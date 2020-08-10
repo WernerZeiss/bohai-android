@@ -228,6 +228,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.XieyiActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CardManagerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AddBankCardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PHQListActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".service.SellPromptService"

@@ -14,10 +14,7 @@ import com.rice.base.BaseImmersionFragment
 import com.rice.bohai.Constant
 import com.rice.bohai.MyApplication
 import com.rice.bohai.R
-import com.rice.bohai.activity.BindBankCardActivity
-import com.rice.bohai.activity.ExtractActivity
-import com.rice.bohai.activity.LoginActivity
-import com.rice.bohai.activity.PintuanMXActivity
+import com.rice.bohai.activity.*
 import com.rice.bohai.adapter.XSPHAdapter
 import com.rice.bohai.dialog.SignDialog
 import com.rice.bohai.dialog.XieyiDialog
@@ -85,18 +82,19 @@ class XSPHFragment : BaseImmersionFragment() {
                         ToastUtil.showShort("请先实名认证")
                         return@setOnItemChildClickListener
                     }
-                    if (MyApplication.instance.userInfo?.is_sign_task == 0) {
-                        //签署数字签名
-                        xieyiDialog = XieyiDialog(mContext)
-                        xieyiDialog.onOkClickListener = object : XieyiDialog.OnOkClickListener {
-                            override fun onOkClick() {
-                                registerSignTask(list[position].id.toString())
-                            }
-                        }
-                        xieyiDialog.show()
-                        ToastUtil.showShort("首次转让请先签署协议")
-                        return@setOnItemChildClickListener
-                    }
+//                    if (MyApplication.instance.userInfo?.is_sign_task == 0) {
+//                        //签署数字签名
+//                        xieyiDialog = XieyiDialog(mContext)
+//                        xieyiDialog.onOkClickListener = object : XieyiDialog.OnOkClickListener {
+//                            override fun onOkClick() {
+//                                registerSignTask(list[position].id.toString())
+//                            }
+//                        }
+//                        xieyiDialog.show()
+//                        ToastUtil.showShort("首次转让请先签署协议")
+//                        return@setOnItemChildClickListener
+//                    }
+
                     //                    if (MyApplication.instance.userInfo?.is_signature == 2) {
                     //                        ToastUtil.showShort("签名正在审核中，请稍后再试")
                     //                        MyApplication.instance.getUserInfoFromWeb()
@@ -125,7 +123,8 @@ class XSPHFragment : BaseImmersionFragment() {
                     sellDialog.setInfo("确认要转让${list[position].product_name}吗？")
                     sellDialog.onOkClickListener = object : OkCancelDialog.OnOkClickListener {
                         override fun onOkClick() {
-                            getSignStatus(list[position].id.toString())
+//                            getSignStatus(list[position].id.toString())
+                            sell(list[position].id.toString())
                         }
                     }
                     sellDialog.show()
@@ -165,14 +164,8 @@ class XSPHFragment : BaseImmersionFragment() {
                     id = list[position].product_id.toString()
                     position_id = list[position].id.toString()
                     if (list[position].status == 2 || list[position].status == 7) {
-                        //转让中/拼团中
-                        var str = ""
-                        if (list[position].status == 2) {
-                            str = "拼团"
-                        } else {
-                            str = "转让"
-                        }
-                        okCancelDialog.setInfo("确认要取消${str}${list[position].product_name}吗？")
+                        //转让中
+                        okCancelDialog.setInfo("确认要取消转让${list[position].product_name}吗？")
                         okCancelDialog.onOkClickListener =
                             object : OkCancelDialog.OnOkClickListener {
                                 override fun onOkClick() {
@@ -196,9 +189,9 @@ class XSPHFragment : BaseImmersionFragment() {
             initData()
         }
         textDe.setOnClickListener {
-            //            var b = Bundle()
-            //            b.putInt("mode", DataActivity.MODE_XSPHDE)
-            ActivityUtils.openActivity(mContext, PintuanMXActivity::class.java)
+//            var b = Bundle()
+//            b.putInt("mode", DataActivity.MODE_XSPHDE)
+            ActivityUtils.openActivity(mContext, PHQListActivity::class.java)
         }
         initData()
     }

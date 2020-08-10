@@ -44,9 +44,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/textCashout"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/textView4"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="14973" />
 
         <TextView
@@ -58,6 +58,20 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textPrice"
             app:layout_constraintStart_toEndOf="@+id/textPrice" />
+
+
+        <TextView
+            android:id="@+id/tv_select_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="选择银行卡  ＞"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/textView4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,6 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
         android:orientation="horizontal">
 
         <TextView
@@ -107,9 +122,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            tools:text="410000"
             android:textColor="@color/orangefc"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="410000" />
 
         <TextView
             android:id="@+id/textCashAll"
@@ -121,16 +136,59 @@
 
     </LinearLayout>
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:text="1，每笔提现金额至少100元，每笔提现收取1元手续费\n2，实名认证后每天提现上线为2万，未认证每日上线2千\n3，提现到账后，将直接转入银行卡"-->
-<!--        android:textColor="#ff999999"-->
-<!--        android:textSize="12sp" />-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/grayee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="20dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="手机号：13100000001" />
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="发送验证码"
+            android:textColor="@color/orangefc"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_phone_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入验证码"
+        android:inputType="phone"
+        android:maxLength="6"
+        android:paddingLeft="16dp"
+        android:paddingRight="10dp"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/grayee" />
 
     <FrameLayout
         android:layout_width="match_parent"

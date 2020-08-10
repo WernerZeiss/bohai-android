@@ -20,7 +20,7 @@ class ChubeiRankListAdapter(var context: Context, data: MutableList<ChubeiRankMo
         GlideLoadUtils.getInstance()
             .glideLoad(mContext, TextUtils.getImgUrl(Constant.getBaseUrl(), bean.logo), img)
         helper.setText(R.id.textMobile, bean.mobile)
-        helper.setText(R.id.textPercent, bean.percent)
+//        helper.setText(R.id.textPercent, bean.percent)
         var layout = helper.getView<FrameLayout>(R.id.rootlayout)
         var framelayoutLogo = helper.getView<FrameLayout>(R.id.framelayout_logo)
         if (bean.index == 0) {

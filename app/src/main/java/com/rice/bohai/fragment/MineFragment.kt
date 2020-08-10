@@ -137,7 +137,7 @@ class MineFragment : BaseImmersionFragment() {
         }
         mAdapter = MineFragmentAdapter(mList)
         mAdapter.setOnItemClickListener { adapter, view, position ->
-            if (position < 4) {
+            if (position < 5) {
                 if (MyApplication.instance.userInfo == null || TextUtils.isEmpty(MyApplication.instance.userInfo!!.access_token)) {
                     ToastUtil.showShort("请先登录")
                     ActivityUtils.openActivity(mContext, LoginActivity::class.java)
@@ -170,20 +170,24 @@ class MineFragment : BaseImmersionFragment() {
                     ActivityUtils.openActivity(mContext, MyAddressActivity::class.java)
                 }
                 3 -> {
-                    //我的协议
-                    //                    if (hasPermission) {
-                    //                    initPermission(false)
-                    ActivityUtils.openActivity(mContext, MyXieyiActivity::class.java)
-                    //                    } else {
-                    //                        if (!permissionDialog.isShowing) {
-                    //                            permissionDialog.show()
-                    //                        }
-                    //                    }
+                    //银行卡管理
+                    ActivityUtils.openActivity(mContext, CardManagerActivity::class.java)
                 }
-                //                5 -> {
-                //                    //实名认证
-                //                    ActivityUtils.openActivity(mContext, BindBankCardActivity::class.java)
-                //                }
+//                4 -> {
+//                    //我的协议
+//                    //                    if (hasPermission) {
+//                    //                    initPermission(false)
+//                    ActivityUtils.openActivity(mContext, MyXieyiActivity::class.java)
+//                    //                    } else {
+//                    //                        if (!permissionDialog.isShowing) {
+//                    //                            permissionDialog.show()
+//                    //                        }
+//                    //                    }
+//                }
+//                //                5 -> {
+//                //                    //实名认证
+//                //                    ActivityUtils.openActivity(mContext, BindBankCardActivity::class.java)
+//                //                }
                 4 -> {
                     //检查更新
                     Beta.checkUpgrade(true, false)

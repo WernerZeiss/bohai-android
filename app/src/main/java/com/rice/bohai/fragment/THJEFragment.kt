@@ -57,14 +57,14 @@ class THJEFragment : BaseImmersionFragment() {
         //提货金额
         recycler.layoutManager = LinearLayoutManager(mContext)
         thjeAdapter = THJEAdapter(mContext, listTHJE)
-        thjeAdapter.setOnItemChildClickListener { adapter, view, position ->
-            when (view.id) {
-                R.id.textExchange -> {
-                    //兑换
-                    pickUp(listTHJE[position].id.toString())
-                }
-            }
-        }
+//        thjeAdapter.setOnItemChildClickListener { adapter, view, position ->
+//            when (view.id) {
+//                R.id.textExchange -> {
+//                    //兑换
+//                    pickUp(listTHJE[position].id.toString())
+//                }
+//            }
+//        }
         thjeAdapter.bindToRecyclerView(recycler)
         thjeAdapter.setEmptyView(R.layout.loading_dialog_gray2)
         recycler.adapter = thjeAdapter
@@ -96,7 +96,6 @@ class THJEFragment : BaseImmersionFragment() {
                 }
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 thjeAdapter.setEmptyView(R.layout.include_no_data)
                 val result = RiceHttpK.getResult(mContext,byts)
                 if (TextUtils.isNotEmpty(result)) {
@@ -120,46 +119,46 @@ class THJEFragment : BaseImmersionFragment() {
         }
     }
 
-    /**
-     * 获取可提货数量
-     */
-    private fun pickUp(id: String) {
-        Http.post {
-            url = RiceHttpK.getUrl(Constant.PICK_UP_NUMBER)
-            params {
-                "id" - id
-                "access_token" - MyApplication.instance.userInfo!!.access_token
-            }
-            onFinish {
-                if (isResumed) {
-                    refresh.finishRefresh()
-                    refresh.finishLoadMore()
-                }
-            }
-            onSuccess { byts ->
-                Log.i("hel->", url)
-                val result = RiceHttpK.getResult(mContext,byts)
-                if (TextUtils.isNotEmpty(result)) {
-                    val model: NumberModel = StringNullAdapter.gson.fromJson(result)
-                    if (model.number > 0) {
-                        var b = Bundle()
-                        b.putString("id", id)
-                        b.putInt("mode", ExtractActivity.MODE_THQ)
-                        b.putInt("number", model.number)
-                        ActivityUtils.openActivity(mContext, ExtractActivity::class.java, b)
-                    }
-                }
-            }
-            onFail { error ->
-                thjeAdapter.setEmptyView(R.layout.include_fail)
-                var message = error.message
-                if ((error.message ?: "").contains("java")) {
-                    Logger.e(message ?: "")
-                    message = "未知错误"
-                }
-                ToastUtil.showShort(message)
-            }
-        }
-    }
+//    /**
+//     * 获取可提货数量
+//     */
+//    private fun pickUp(id: String) {
+//        Http.post {
+//            url = RiceHttpK.getUrl(Constant.PICK_UP_NUMBER)
+//            params {
+//                "id" - id
+//                "access_token" - MyApplication.instance.userInfo!!.access_token
+//            }
+//            onFinish {
+//                if (isResumed) {
+//                    refresh.finishRefresh()
+//                    refresh.finishLoadMore()
+//                }
+//            }
+//            onSuccess { byts ->
+//                Log.i("hel->", url)
+//                val result = RiceHttpK.getResult(mContext,byts)
+//                if (TextUtils.isNotEmpty(result)) {
+//                    val model: NumberModel = StringNullAdapter.gson.fromJson(result)
+//                    if (model.number > 0) {
+//                        var b = Bundle()
+//                        b.putString("id", id)
+//                        b.putInt("mode", ExtractActivity.MODE_THQ)
+//                        b.putInt("number", model.number)
+//                        ActivityUtils.openActivity(mContext, ExtractActivity::class.java, b)
+//                    }
+//                }
+//            }
+//            onFail { error ->
+//                thjeAdapter.setEmptyView(R.layout.include_fail)
+//                var message = error.message
+//                if ((error.message ?: "").contains("java")) {
+//                    Logger.e(message ?: "")
+//                    message = "未知错误"
+//                }
+//                ToastUtil.showShort(message)
+//            }
+//        }
+//    }
 
 }

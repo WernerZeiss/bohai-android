@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="42dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_btn_orange5"
             android:paddingTop="8dp"
+            android:paddingRight="5dp"
             android:paddingBottom="8dp">
 
             <TextView
@@ -60,6 +61,22 @@
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:text="账号"-->
+<!--                android:visibility="invisible"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="13sp" />-->
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"/>
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -69,26 +86,26 @@
                 android:text="账号"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="分配占比"
-                android:textColor="@color/white"
-                android:textSize="13sp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerRank"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/white"
             android:layout_marginTop="-1dp"
+            android:layout_weight="1"
             android:paddingBottom="5dp"
             android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"
+            android:layout_marginBottom="15dp"
+            android:text="当前排行榜只展示前10用户，最终排名以实际公布为准！"/>
     </LinearLayout>
 
 

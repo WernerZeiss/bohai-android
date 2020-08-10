@@ -22,6 +22,7 @@ data class UserModel(
     var total_market_value: String = "", //账户市值
     var price: String = "", //现金账户
     var total_profit_price: String = "", //销售配货
+    var ticket_money:String = "",//储备券
     var total_settlement_price: String = "", //提货金额
     var is_transaction_pass: Int = 0, //是否设置过交易密码
     var is_signature: Int = 0, //是否签过转让签名

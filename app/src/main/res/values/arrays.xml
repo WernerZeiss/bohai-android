@@ -6,14 +6,15 @@
         <item>邀请好友</item>
         <item>安全中心</item>
         <item>地址管理</item>
-        <item>我的协议</item>
+        <item>银行卡管理</item>
+<!--        <item>我的协议</item>-->
         <item>检查更新</item>
         <item>切换API域名</item>
     </string-array>
 
     <!--安全中心选项-->
     <string-array name="security_setting">
-        <item>设置交易密码</item>
+<!--        <item>设置交易密码</item>-->
         <item>修改登录密码</item>
     </string-array>
 

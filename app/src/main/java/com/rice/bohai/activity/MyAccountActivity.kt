@@ -94,7 +94,7 @@ class MyAccountActivity : RiceBaseActivity() {
     fun initData() {
         textXSPH.text = mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.total_profit_price
         textXianjin.text = mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.price
-        textJiaoshou.text = mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.total_settlement_price
+        textJiaoshou.text = mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.ticket_money
         textJifen.text = MyApplication.instance.userInfo?.integral_num
     }
 

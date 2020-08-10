@@ -95,7 +95,7 @@ class MyApplication : MultiDexApplication() {
             return
         }
         //正式版固定域名
-        Constant.baseType = settings.getInt(BASETYPE, Constant.BETA)
+        Constant.baseType = settings.getInt(BASETYPE, Constant.ONLINE)
     }
 
     @SuppressLint("CommitPrefEdits")

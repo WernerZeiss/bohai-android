@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="16dp"
-    android:paddingTop="16dp"
-    android:paddingEnd="16dp">
+    android:paddingTop="16dp">
 
     <TextView
         android:id="@+id/textName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/textPrice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,71 +23,47 @@
         android:id="@+id/textTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/gray9"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textExchange"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textName"
         tools:text="2019-09-26  17:34" />
 
-    <TextView
-        android:id="@+id/textExchange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/bg_btn_orange"
-        android:paddingStart="12dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="4dp"
-        android:text="提货"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textPrice"
-        app:layout_constraintTop_toBottomOf="@+id/textTag" />
-
-    <TextView
-        android:id="@+id/textTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="市值："
-        android:textColor="@color/gray9"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/textMarket"
-        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
-
-    <TextView
-        android:id="@+id/textMarket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/orangefc"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/textTag"
-        app:layout_constraintEnd_toEndOf="@+id/textPrice"
-        tools:text="20.00" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/graye5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/orangefc"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/orangef9"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textName"
         tools:text="+1000" />
+
+
+    <TextView
+        android:id="@+id/textExchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/textTime"
+        app:layout_constraintEnd_toEndOf="@+id/textPrice"
+        app:layout_constraintTop_toTopOf="@id/textTime"
+        tools:text="转让储备券" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/graye5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTime" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

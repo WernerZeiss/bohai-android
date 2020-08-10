@@ -1,5 +1,8 @@
 package com.rice.bohai
 
+import android.util.Log
+import com.rice.racar.web.RiceHttpK
+
 class Constant {
 
     //    enum class BaseType {
@@ -13,6 +16,7 @@ class Constant {
         const val BETA = 0
         const val ALPHA = 1
         const val SITA = 2
+        const val ONLINE = 3
 
         var baseType = BETA
 
@@ -126,11 +130,17 @@ class Constant {
         const val CHUBEI_MONEY = "get-show-total-tickets" //总储备值
         const val CHUBEI_RULE = "get-chu-bei-rules" //储备规则
         const val CHUBEI_RULE_RANK = "get-chu-bei-rank-list" //储备排行
+        const val GET_MY_BANK_CARD_LIST = "get-my-bank-card-list"//获取银行卡列表
+        const val DEFAULT_BANK = "default-bank"//设置默认银行卡
+        const val REAL_NAME = "real-name"//新版两要素实名认证
 
         const val REQUEST_SELECT_ADDRESS = 0x00001 //选择收货地址
         const val REQUEST_SELECT_ORDER = 0x00002 //选择订单
         const val REQUEST_XSPH2JF = 0x00003 //销售配货转积分
         const val REQUEST_SHOP_CAR_BUY = 0x00004 //购物车批量兑换
         const val REQUEST_MESSAGE_LIST = 0x00005 //消息中心
+
+
+        const val IMAGE_PRE_URL = "https://qiniu.scxhrd.com/static/img/"//图片前缀
     }
 }

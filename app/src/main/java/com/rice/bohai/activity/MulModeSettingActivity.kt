@@ -43,7 +43,7 @@ class MulModeSettingActivity : RiceBaseActivity() {
             MODE_SECURITY -> {
                 toolbar.setTitle("安全中心")
                 val stringArray =
-                        mContext.resources.getStringArray(R.array.security_setting)//设置项名称数组
+                    mContext.resources.getStringArray(R.array.security_setting)//设置项名称数组
                 for (i in stringArray.indices) {
                     val model = MineFragmnetModel()
                     model.title = stringArray[i]
@@ -65,24 +65,28 @@ class MulModeSettingActivity : RiceBaseActivity() {
                     }
                 }
                 mAdapter =
-                        MineFragmentAdapter(mList, com.rice.riceframe.R.layout.item_minefragment_big)
+                    MineFragmentAdapter(mList, com.rice.riceframe.R.layout.item_minefragment_big)
                 mAdapter.setOnItemClickListener { adapter, view, position ->
                     when (position) {
+//                        0 -> {
+//                            //设置交易密码
+//                            var b = Bundle()
+//                            if (MyApplication.instance.userInfo?.is_transaction_pass ?: 0 > 0) {
+//                                b.putInt("mode", EditPasswordActivity.MODE_FORGET_PY_PASSWORD)
+//                            } else {
+//                                b.putInt("mode", EditPasswordActivity.MODE_SET_PY_PASSWORD)
+//                            }
+//                            ActivityUtils.openActivity(mContext, EditPasswordActivity::class.java, b)
+//                        }
                         0 -> {
-                            //设置交易密码
-                            var b = Bundle()
-                            if (MyApplication.instance.userInfo?.is_transaction_pass ?: 0 > 0) {
-                                b.putInt("mode", EditPasswordActivity.MODE_FORGET_PY_PASSWORD)
-                            } else {
-                                b.putInt("mode", EditPasswordActivity.MODE_SET_PY_PASSWORD)
-                            }
-                            ActivityUtils.openActivity(mContext, EditPasswordActivity::class.java, b)
-                        }
-                        1 -> {
                             //修改登录密码
                             var b = Bundle()
                             b.putInt("mode", EditPasswordActivity.MODE_MODIFY_LOGIN_PASSWORD)
-                            ActivityUtils.openActivity(mContext, EditPasswordActivity::class.java, b)
+                            ActivityUtils.openActivity(
+                                mContext,
+                                EditPasswordActivity::class.java,
+                                b
+                            )
                         }
                     }
                 }
@@ -90,7 +94,7 @@ class MulModeSettingActivity : RiceBaseActivity() {
             MODE_ZJHZ -> {
                 toolbar.setTitle("划转积分")
                 val stringArray =
-                        mContext.resources.getStringArray(R.array.hzjf_setting)//设置项名称数组
+                    mContext.resources.getStringArray(R.array.hzjf_setting)//设置项名称数组
                 for (i in stringArray.indices) {
                     val model = MineFragmnetModel()
                     model.title = stringArray[i]
@@ -105,7 +109,7 @@ class MulModeSettingActivity : RiceBaseActivity() {
                     mList.add(model)
                 }
                 mAdapter =
-                        MineFragmentAdapter(mList, com.rice.riceframe.R.layout.item_minefragment_big)
+                    MineFragmentAdapter(mList, com.rice.riceframe.R.layout.item_minefragment_big)
                 mAdapter.setOnItemClickListener { adapter, view, position ->
                     when (position) {
                         0 -> {
