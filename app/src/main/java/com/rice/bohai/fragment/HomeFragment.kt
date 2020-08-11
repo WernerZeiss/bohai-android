@@ -17,10 +17,7 @@ import com.rice.base.BaseImmersionFragment
 import com.rice.bohai.Constant
 import com.rice.bohai.MyApplication
 import com.rice.bohai.R
-import com.rice.bohai.activity.CommodityDeActivity
-import com.rice.bohai.activity.DataActivity
-import com.rice.bohai.activity.MessageActivity
-import com.rice.bohai.activity.MyScoreActivity
+import com.rice.bohai.activity.*
 import com.rice.bohai.adapter.*
 import com.rice.bohai.anim.ScalePageTransformer
 import com.rice.bohai.model.*
@@ -129,8 +126,9 @@ class HomeFragment : BaseImmersionFragment() {
             ActivityUtils.openActivity(mContext, MessageActivity::class.java, b)
         }
         llJFSC.setOnClickListener {
-            //积分商城
-            ActivityUtils.openActivity(mContext, MyScoreActivity::class.java)
+            //关于我们
+//            ActivityUtils.openActivity(mContext, MyScoreActivity::class.java)
+            PictureActivity.into(mContext,imgRes = R.drawable.about_us)
         }
         llZXKF.setOnClickListener {
             //在线客服

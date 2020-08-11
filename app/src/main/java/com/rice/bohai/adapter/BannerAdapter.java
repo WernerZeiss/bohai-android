@@ -47,14 +47,14 @@ public class BannerAdapter extends InfinitePagerAdapter {
         }
         GlideLoadUtils.getInstance().glideLoad(mContext, TextUtils.getImgUrl(Constant.getBaseUrl(), data.get(position).getImage()),
                 mContext.getResources().getDimensionPixelOffset(R.dimen.dp_8), holder.img);
-        holder.img.setOnClickListener(
-                v -> {
-                    Bundle b = new Bundle();
-                    b.putBoolean("textX", true);
-                    b.putString("url", data.get(position).getContent());
-                    b.putString("title", data.get(position).getTitle());
-                    ActivityUtils.openActivity(mContext, BannerDetailActivity.class, b);
-                });
+//        holder.img.setOnClickListener(
+//                v -> {
+//                    Bundle b = new Bundle();
+//                    b.putBoolean("textX", true);
+//                    b.putString("url", data.get(position).getContent());
+//                    b.putString("title", data.get(position).getTitle());
+//                    ActivityUtils.openActivity(mContext, BannerDetailActivity.class, b);
+//                });
         return convertView;
     }
 

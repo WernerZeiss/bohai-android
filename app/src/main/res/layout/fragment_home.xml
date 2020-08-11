@@ -138,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/btn_jfsc" />
+                            android:src="@drawable/icon_about_us" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="18dp"
                             android:gravity="center"
-                            android:text="入驻商家"
+                            android:text="关于我们"
                             android:textColor="@color/black31"
                             android:textSize="13sp" />
 
