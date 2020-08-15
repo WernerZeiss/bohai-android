@@ -55,7 +55,12 @@ class PintuanFragment : BaseImmersionFragment() {
             var dialog = CommonDialog(mContext, msg)
             dialog.onCallback = object : CommonDialog.OnCallback {
                 override fun okClick() {
-                    buy()
+                    val price = MyApplication.instance.userInfo?.price
+                    if (!TextUtils.isEmpty(price) && price!!.toDouble() > 0){
+                        buy()
+                    }else{
+                        ToastUtil.showShort("账户余额不足~")
+                    }
                 }
 
                 override fun xieyiClick() {

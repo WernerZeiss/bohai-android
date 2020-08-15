@@ -46,15 +46,13 @@ class BindBankCardActivity : RiceBaseActivity() {
 
     override fun initView() {
         loadingDialog = RLoadingDialog(mContext, true)
-//        recycler.layoutManager = LinearLayoutManager(mContext)
-//        inputAdapter = InputAdapter(mContext, inputList)
-//        recycler.adapter = inputAdapter
-//        initMode()
-
         if (MyApplication.instance.userInfo?.is_valid == 1) {
+            et_name.setTextColor(resources.getColor(R.color.gray5b))
+            et_idcard.setTextColor(resources.getColor(R.color.gray5b))
+            textBtnSubmit.setBackgroundResource(R.drawable.bg_graye8)
             et_name.isEnabled = false
             et_idcard.isEnabled = false
-            textBtnSubmit.text = "修改"
+            textBtnSubmit.isEnabled = false
         } else {
             et_name.isEnabled = true
             et_idcard.isEnabled = true

@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.TextUtils
-import android.util.Log
 import com.fangtao.ftlibrary.gson.StringNullAdapter
 import com.github.salomonbrys.kotson.fromJson
 import com.ohmerhe.kolley.request.Http
@@ -24,7 +23,6 @@ import com.rice.tool.ActivityUtils
 import com.rice.tool.DecimalDigitsInputFilter
 import com.rice.tool.ToastUtil
 import kotlinx.android.synthetic.main.activity_cashout.*
-import kotlinx.android.synthetic.main.activity_forget.*
 import java.nio.charset.Charset
 
 @SuppressLint("Registered")
@@ -146,7 +144,6 @@ class CashoutActivity : RiceBaseActivity() {
             }
             onSuccess { byts ->
                 val result: String? = RiceHttpK.getResult(mContext, byts)
-                Log.e("Cashout",result)
                 if (!TextUtils.isEmpty(result)) {
                     ToastUtil.showShort("验证码已发送")
                     timeCount = TimeCount(60000, 1000)
@@ -194,7 +191,7 @@ class CashoutActivity : RiceBaseActivity() {
                 "access_token" - MyApplication.instance.userInfo!!.access_token
                 "price" - editPrice.text.toString()
                 "code" - et_phone_code.text.toString()
-                "bank_card_id" - selectedCard!!.bank_id
+                "bank_id" - selectedCard!!.id
             }
             onSuccess { bytes ->
                 var data = bytes.toString(Charset.defaultCharset())

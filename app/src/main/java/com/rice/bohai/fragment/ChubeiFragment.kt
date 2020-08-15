@@ -138,6 +138,9 @@ class ChubeiFragment : BaseImmersionFragment() {
                     var model: ChubeiModel = StringNullAdapter.gson.fromJson(result)
                     money = model.show_money
                     money0 = money.toFloat()
+                    if (money0 == 0f){
+                        textview_money.text = "￥${money}"
+                    }
                 }
             }
             onFail { error ->

@@ -38,5 +38,6 @@ data class UserModel(
     var is_address: String = "", //是否填写了地址
     var is_no_read_message: Int = 0, //是否有未读消息
     var is_sign_task: Int = 0, //是否同意了上上签协议
-    var p_open_auto_group: Int = 0
+    var p_open_auto_group: Int = 0,
+    var agreement_doc:String = ""//数字证书协议
 ) : Serializable
