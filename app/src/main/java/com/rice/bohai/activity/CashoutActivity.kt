@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.TextUtils
+import android.util.Log
 import com.fangtao.ftlibrary.gson.StringNullAdapter
 import com.github.salomonbrys.kotson.fromJson
 import com.ohmerhe.kolley.request.Http
@@ -24,6 +25,7 @@ import com.rice.tool.DecimalDigitsInputFilter
 import com.rice.tool.ToastUtil
 import kotlinx.android.synthetic.main.activity_cashout.*
 import java.nio.charset.Charset
+import kotlin.math.log
 
 @SuppressLint("Registered")
 class CashoutActivity : RiceBaseActivity() {
@@ -71,6 +73,7 @@ class CashoutActivity : RiceBaseActivity() {
         tv_code.setOnClickListener {
             sendCode(MyApplication.instance.userInfo?.user_phone.toString())
         }
+        getMyBanks()
     }
 
     override fun onResume() {
@@ -84,6 +87,52 @@ class CashoutActivity : RiceBaseActivity() {
                 }
             }
         MyApplication.instance.getUserInfoFromWeb()
+    }
+
+    /**
+     * 获取我的银行卡列表
+     */
+    private fun getMyBanks(){
+        Http.post {
+            url = RiceHttpK.getUrl(Constant.GET_MY_BANK_CARD_LIST)
+            params {
+                "access_token" - MyApplication.instance.userInfo!!.access_token
+            }
+            onSuccess { bytes ->
+                val result = RiceHttpK.getResult(mContext, bytes)
+                if (!TextUtils.isEmpty(result)) {
+                    val model: CardListModel = StringNullAdapter.gson.fromJson(result)
+                    if (!model.lists.isNullOrEmpty()) {
+                        model.lists.forEach {
+                            if (it.is_default == 1){
+                                //默认银行卡
+                                selectedCard = it
+                                tv_select_card.text = selectedCard?.name + "  ＞"
+                            }
+                        }
+                        selectCardDialog = DialogHelper.getSelectCardDialog(
+                            this@CashoutActivity,
+                            model.lists,
+                            object : OnSelectCardListener {
+                                override fun onSelectCard(position: Int, card: CardModel) {
+                                    selectCardDialog?.dismiss()
+                                    selectedCard = card
+                                    tv_select_card.text = selectedCard?.name + "  ＞"
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+            onFail { error ->
+                var message = error.message
+                if ((error.message ?: "").contains("java")) {
+                    Logger.e(message ?: "")
+                    message = "未知错误"
+                }
+                ToastUtil.showShort(message)
+            }
+        }
     }
 
 

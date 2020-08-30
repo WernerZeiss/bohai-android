@@ -181,6 +181,7 @@ class MyScoreActivity : RiceBaseActivity() {
         textJFMX.setTextColor(mContext.resources.getColor(R.color.black))
         when (tag) {
             TAG_JFSC -> {
+                llSelector.visibility = View.VISIBLE
                 editSearch.visibility = View.VISIBLE
                 imgJFSC.setImageResource(R.drawable.btn_market_jf_focus)
                 textJFSC.setTextColor(mContext.resources.getColor(R.color.bottom_focus))
@@ -189,7 +190,7 @@ class MyScoreActivity : RiceBaseActivity() {
                 runOnUiThread { frameNoLogin.visibility = View.GONE }
             }
             TAG_DHJL -> {
-                editSearch.visibility = View.GONE
+                llSelector.visibility = View.GONE
                 imgDHJL.setImageResource(R.drawable.btn_history_jf_focus)
                 textDHJL.setTextColor(mContext.resources.getColor(R.color.bottom_focus))
                 recycler.layoutManager = LinearLayoutManager(mContext)
@@ -199,7 +200,7 @@ class MyScoreActivity : RiceBaseActivity() {
                 }
             }
             TAG_JFMX -> {
-                editSearch.visibility = View.GONE
+                llSelector.visibility = View.GONE
                 imgJFMX.setImageResource(R.drawable.btn_jf_focus)
                 textJFMX.setTextColor(mContext.resources.getColor(R.color.bottom_focus))
                 recycler.layoutManager = LinearLayoutManager(mContext)

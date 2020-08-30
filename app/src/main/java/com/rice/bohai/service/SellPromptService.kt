@@ -78,7 +78,7 @@ class SellPromptService : Service() {
                 "access_token" - MyApplication.instance.userInfo!!.access_token
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
+//                Log.i("hel->", url)
                 val result = RiceHttpK.getResult(applicationContext,byts)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: SellPromptModel = StringNullAdapter.gson.fromJson(result)

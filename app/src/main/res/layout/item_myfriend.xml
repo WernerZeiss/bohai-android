@@ -11,11 +11,9 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        tools:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/textName"
@@ -32,22 +30,22 @@
         android:id="@+id/textTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="添加时间：2019.09.26"
         android:textColor="@color/gray9"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgHeader"
-        app:layout_constraintStart_toStartOf="@+id/textName" />
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        tools:text="添加时间：2019.09.26" />
 
     <TextView
         android:id="@+id/textPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        tools:text="13585487898"
         android:textColor="@color/black3"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textName" />
+        app:layout_constraintTop_toTopOf="@+id/textName"
+        tools:text="13585487898" />
 
     <TextView
         android:id="@+id/textAttr"
@@ -60,13 +58,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="13585487898" />
 
+    <TextView
+        android:id="@+id/tvGroupNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="拼团总数：0"
+        android:textColor="@color/gray9"
+        android:textSize="11sp"
+        app:layout_constraintLeft_toLeftOf="@id/textName"
+        app:layout_constraintTop_toBottomOf="@id/textTime" />
+
+    <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:background="@drawable/bg_rect_green_4"
+        android:textColor="@color/white"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvGroupNum"
+        app:layout_constraintLeft_toRightOf="@id/tvGroupNum"
+        app:layout_constraintTop_toTopOf="@id/tvGroupNum"
+        tools:text="V1" />
+
     <View
         android:id="@+id/view6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="16dp"
         android:background="@color/graye5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGroupNum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

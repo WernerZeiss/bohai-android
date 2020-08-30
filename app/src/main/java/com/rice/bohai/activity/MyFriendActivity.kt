@@ -162,9 +162,9 @@ class MyFriendActivity : RiceBaseActivity() {
                 refresh.finishRefresh()
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 myFriendAdapter.setEmptyView(R.layout.include_no_data)
                 val result = RiceHttpK.getResult(mContext,byts)
+                Log.i("friends->", result)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: FriendListModel = StringNullAdapter.gson.fromJson(result)
                     textPeopleNumber.text = "总人数：${model.total_count}"

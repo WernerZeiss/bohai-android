@@ -75,6 +75,8 @@ class PintuanMXActivity : RiceBaseActivity() {
         var title = "请选择日期"
         TimePickerBuilder(this, OnTimeSelectListener { date, v ->
             start_time = SimpleDateFormat("yyyy-MM-dd").format(date)
+            page = 1
+            initData()
         })
             .setTitleText(title)
             .setType(booleanArrayOf(true, true, true, false, false, false))

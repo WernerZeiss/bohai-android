@@ -327,6 +327,23 @@ class MyApplication : MultiDexApplication() {
         return user
     }
 
+    fun savePasswordList(list: List<PasswordModel>?){
+        if (list == null){
+            return
+        }
+        val editor = settings.edit()
+        val baos = ByteArrayOutputStream()
+        try {
+            val oos = ObjectOutputStream(baos)
+            oos.writeObject(list) //把对象写到流里
+            val temp = String(Base64.encode(baos.toByteArray(), Base64.DEFAULT))
+            editor.putString(PASSWORD, temp)
+            editor.apply()
+        } catch (e: IOException) {
+            Logger.e("保存密码对象失败" + e.message)
+        }
+    }
+
     /**
      * 保存账号密码到手机
      */
@@ -345,24 +362,15 @@ class MyApplication : MultiDexApplication() {
         if (!hasThisUser) {
             passwordList?.add(model)
         }
-        val editor = settings.edit()
-        val baos = ByteArrayOutputStream()
-        try {
-            val oos = ObjectOutputStream(baos)
-            oos.writeObject(passwordList) //把对象写到流里
-            val temp = String(Base64.encode(baos.toByteArray(), Base64.DEFAULT))
-            editor.putString(PASSWORD, temp)
-            editor.apply()
-        } catch (e: IOException) {
-            Logger.e("保存密码对象失败" + e.message)
-        }
+        savePasswordList(passwordList)
+    }
 
-        //        } else {
-        //            try {
-        //                throw Exception("User must implements Serializable")
-        //            } catch (e: Exception) {
-        //                e.printStackTrace()
-        //            }
+
+    fun deletePassword(model: PasswordModel){
+        if (passwordList != null && passwordList!!.contains(model)){
+            passwordList?.remove(model)
+            savePasswordList(passwordList)
+        }
     }
 
     /**

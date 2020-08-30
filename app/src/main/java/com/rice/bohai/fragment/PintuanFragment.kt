@@ -179,10 +179,10 @@ class PintuanFragment : BaseImmersionFragment() {
                 Log.i("hel->", "checkbox onchecked to ${b}")
                 autoAddPintuan()
             }
-
-            initPintuanProcess()
-            initPintuanList()
         }
+        initPintuanProcess()
+        initPintuanList()
+
     }
 
     private fun initPintuanProcess() {

@@ -320,10 +320,6 @@ class MineFragment : BaseImmersionFragment() {
             }
             ActivityUtils.openActivity(mContext, MyOrderActivity::class.java) //←以前叫我的订单
         }
-        textSwitch.setOnClickListener {
-            //切换账号
-            ActivityUtils.openActivity(mContext, LoginActivity::class.java)
-        }
         llWDXJ.setOnClickListener {
             //我的钱包
             if (MyApplication.instance.userInfo == null || TextUtils.isEmpty(MyApplication.instance.userInfo!!.access_token)) {

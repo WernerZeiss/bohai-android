@@ -148,13 +148,15 @@ class ZHSZFragment : BaseImmersionFragment() {
             //            }
             MODE_XJZH -> {
                 textTag.text = "现金账户"
-                textBtn.text = "充值"
-                if (MyApplication.instance.userInfo?.is_start_recharge == 1) {
-                    textBtn.visibility = View.VISIBLE
-                } else {
-                    textBtn.visibility = View.GONE
-                }
-                textBtn2.visibility = View.VISIBLE
+//                textBtn.text = "充值"
+////                if (MyApplication.instance.userInfo?.is_start_recharge == 1) {
+////                    textBtn.visibility = View.VISIBLE
+////                } else {
+////                    textBtn.visibility = View.GONE
+////                }
+////                textBtn2.visibility = View.VISIBLE
+
+                ll_bottom_container.visibility = View.GONE
                 recycler.adapter = xjsyAdapter
                 frameXSPH.visibility = View.GONE
             }

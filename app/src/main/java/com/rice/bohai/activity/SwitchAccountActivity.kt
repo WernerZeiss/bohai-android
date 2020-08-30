@@ -2,8 +2,15 @@ package com.rice.bohai.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Canvas
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
+import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.fangtao.ftlibrary.gson.StringNullAdapter
 import com.github.salomonbrys.kotson.fromJson
 import com.ohmerhe.kolley.request.Http
@@ -14,6 +21,7 @@ import com.rice.bohai.MainActivity
 import com.rice.bohai.MyApplication
 import com.rice.bohai.R
 import com.rice.bohai.adapter.AccountAdapter
+import com.rice.bohai.model.PasswordModel
 import com.rice.bohai.model.UserModel
 import com.rice.dialog.OkCancelDialog
 import com.rice.racar.web.RiceHttpK
@@ -25,10 +33,13 @@ import kotlinx.android.synthetic.main.activity_switch.*
 @SuppressLint("Registered")
 class SwitchAccountActivity : RiceBaseActivity() {
 
-    lateinit var accountAdapter: AccountAdapter
+    var list = mutableListOf<PasswordModel>()
+    var accountAdapter: AccountAdapter? = null
     lateinit var loginDialog: OkCancelDialog
+    lateinit var deleteDialog:OkCancelDialog
     var mobile = ""
     var password = ""
+    private var selectedDelPassword:PasswordModel? = null
 
     override fun getLayoutId(): Int {
         return R.layout.activity_switch
@@ -42,18 +53,47 @@ class SwitchAccountActivity : RiceBaseActivity() {
                 login()
             }
         }
-        accountAdapter =
-            AccountAdapter(mContext, MyApplication.instance.passwordList ?: ArrayList())
-        accountAdapter.setOnItemClickListener { adapter, view, position ->
-            mobile = MyApplication.instance.passwordList!![position].username
-            password = MyApplication.instance.passwordList!![position].password
-            if (!loginDialog.isShowing) {
-                loginDialog.show()
+
+        deleteDialog = OkCancelDialog(mContext)
+        deleteDialog.setInfo("是否要删除选择的账号？")
+        deleteDialog.onOkClickListener = object :OkCancelDialog.OnOkClickListener{
+            override fun onOkClick() {
+                if (selectedDelPassword != null){
+                    list.remove(selectedDelPassword!!)
+                    MyApplication.instance.deletePassword(selectedDelPassword!!)
+                    accountAdapter?.notifyDataSetChanged()
+                }
             }
+        }
+
+        if (MyApplication.instance.passwordList != null){
+            list.addAll(MyApplication.instance.passwordList!!)
+        }
+        accountAdapter =
+            AccountAdapter(mContext, list)
+        accountAdapter?.setOnItemClickListener { adapter, view, position ->
+            if (!list[position].isChecked()){
+                mobile = MyApplication.instance.passwordList!![position].username
+                password = MyApplication.instance.passwordList!![position].password
+                if (!loginDialog.isShowing) {
+                    loginDialog.show()
+                }
+            }
+        }
+        accountAdapter?.setOnItemLongClickListener { adapter, view, position ->
+            if (!list[position].isChecked()){
+                selectedDelPassword = list[position]
+                if (!deleteDialog.isShowing){
+                    deleteDialog.show()
+                }
+            }
+            true
         }
         toolbar.setOnOkClickListener {
             //添加账号
-            ActivityUtils.openActivity(mContext, LoginActivity::class.java)
+            val intent = Intent(mContext, LoginActivity::class.java)
+            intent.putExtra("toMain", true)
+            startActivity(intent)
         }
         recycler.layoutManager = LinearLayoutManager(mContext)
         recycler.adapter = accountAdapter
