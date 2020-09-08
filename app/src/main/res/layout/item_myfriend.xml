@@ -27,6 +27,23 @@
         tools:text="姓名" />
 
     <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:background="@drawable/bg_rect_green_4"
+        android:textColor="@color/white"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/textName"
+        app:layout_constraintLeft_toRightOf="@id/textName"
+        app:layout_constraintTop_toTopOf="@id/textName"
+        tools:text="V1" />
+
+    <TextView
         android:id="@+id/textTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,28 +80,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="拼团总数：0"
+        android:text="团队当月拼团数：0"
         android:textColor="@color/gray9"
         android:textSize="11sp"
         app:layout_constraintLeft_toLeftOf="@id/textName"
         app:layout_constraintTop_toBottomOf="@id/textTime" />
 
     <TextView
-        android:id="@+id/tvLevel"
+        android:id="@+id/tvGroupActiveNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:background="@drawable/bg_rect_green_4"
-        android:textColor="@color/white"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="1dp"
-        android:paddingBottom="1dp"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvGroupNum"
-        app:layout_constraintLeft_toRightOf="@id/tvGroupNum"
+        tools:text="团队活跃人数：0"
         app:layout_constraintTop_toTopOf="@id/tvGroupNum"
-        tools:text="V1" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="80dp"
+        android:textColor="@color/gray9"
+        android:textSize="11sp"/>
 
     <View
         android:id="@+id/view6"

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:backMode="mode_hide"
+        app:backMode="mode_img"
         app:okMode="mode_text"
         app:okText="编辑"
         app:title="购物车" />

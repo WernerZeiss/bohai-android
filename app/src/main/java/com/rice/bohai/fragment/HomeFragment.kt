@@ -107,6 +107,10 @@ class HomeFragment : BaseImmersionFragment() {
             b.putInt("tab", MessageActivity.TAB_NOTIFY)
             ActivityUtils.openActivity(mContext, MessageActivity::class.java, b)
         }
+        iv_shop_car.setOnClickListener {
+            //购物车
+            ActivityUtils.openActivity(mContext, ShopcarActivity::class.java)
+        }
         frameMessage.setOnClickListener {
             ActivityUtils.openActivity(mContext, MessageActivity::class.java)
         }

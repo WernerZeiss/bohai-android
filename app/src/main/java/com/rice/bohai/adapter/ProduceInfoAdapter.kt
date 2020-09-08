@@ -27,7 +27,8 @@ class ProduceInfoAdapter(var context: Context, data: MutableList<OrderModel.Orde
 //            price = mContext.resources.getString(R.string.CNY) + bean.price + "+" + bean.integral + "积分"
 //        }
         var price = mContext.resources.getString(R.string.CNY) + bean.price
-        helper.setText(R.id.textPrice, price)
+        val score = bean.integral + "积分"
+        helper.setText(R.id.textPrice, score)
         var img = helper.getView<ImageView>(R.id.img)
         GlideLoadUtils.getInstance().glideLoad(mContext, TextUtils.getImgUrl(Constant.getBaseUrl(), bean.image),
                 mContext.resources.getDimensionPixelOffset(R.dimen.dp_6), img)

@@ -121,18 +121,18 @@ class ConfirmExchangeActivity : RiceBaseActivity() {
                 ToastUtil.showShort("请先实名认证")
                 return@setOnClickListener
             }
-            if (MyApplication.instance.userInfo?.is_sign_task == 0) {
-                //签署数字签名
-                xieyiDialog = XieyiDialog(mContext)
-                xieyiDialog.onOkClickListener = object : XieyiDialog.OnOkClickListener {
-                    override fun onOkClick() {
-                        registerSignTask()
-                    }
-                }
-                xieyiDialog.show()
-                ToastUtil.showShort("首次兑换请先签署协议")
-                return@setOnClickListener
-            }
+//            if (MyApplication.instance.userInfo?.is_sign_task == 0) {
+//                //签署数字签名
+//                xieyiDialog = XieyiDialog(mContext)
+//                xieyiDialog.onOkClickListener = object : XieyiDialog.OnOkClickListener {
+//                    override fun onOkClick() {
+//                        registerSignTask()
+//                    }
+//                }
+//                xieyiDialog.show()
+//                ToastUtil.showShort("首次兑换请先签署协议")
+//                return@setOnClickListener
+//            }
             when (mode) {
                 MODE_SINGLE -> {
                     if (model?.is_signature ?: 1 == 1) {

@@ -88,6 +88,7 @@
             android:paddingTop="8dp"
             android:paddingLeft="8dp"
             android:paddingBottom="8dp"
+            android:checked="true"
             android:text="登录即代表您同意"
             android:textColor="@color/black33"
             android:textSize="14sp" />

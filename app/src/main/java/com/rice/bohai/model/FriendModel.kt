@@ -33,5 +33,6 @@ data class FriendModel(
         var union_user_id: Int = 0,
         var updated_at: String = "",
         var attribute_name: String = "", //好友属性
-        var group_total_number:Int = 0
+        var group_total_number:Int = 0,
+        var group_active_total_number:Int = 0
 ) : Serializable

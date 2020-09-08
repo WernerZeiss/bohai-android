@@ -18,6 +18,8 @@ import com.rice.bohai.dialog.DialogHelper
 import com.rice.bohai.dialog.OnSelectCardListener
 import com.rice.bohai.model.CardListModel
 import com.rice.bohai.model.CardModel
+import com.rice.bohai.tools.ClickUtils
+import com.rice.dialog.RLoadingDialog
 import com.rice.racar.web.PublicModel
 import com.rice.racar.web.RiceHttpK
 import com.rice.tool.ActivityUtils
@@ -30,6 +32,7 @@ import kotlin.math.log
 @SuppressLint("Registered")
 class CashoutActivity : RiceBaseActivity() {
 
+    lateinit var loadingDialog: RLoadingDialog
     private var timeCount: TimeCount? = null
     private var selectCardDialog: Dialog? = null
     private var selectedCard: CardModel? = null
@@ -39,11 +42,15 @@ class CashoutActivity : RiceBaseActivity() {
     }
 
     override fun initView() {
+        loadingDialog = RLoadingDialog(mContext, true)
         editPrice.filters = arrayOf(DecimalDigitsInputFilter(2))
         textCashAll.setOnClickListener {
             editPrice.setText(textPrice.text)
         }
         textBtnSubmit.setOnClickListener {
+            if (!ClickUtils.enableClick()){
+                return@setOnClickListener
+            }
             if (TextUtils.isEmpty(editPrice.text.toString().trim())) {
                 ToastUtil.showShort("请输入提现金额~")
                 return@setOnClickListener
@@ -259,6 +266,14 @@ class CashoutActivity : RiceBaseActivity() {
                     message = "未知错误"
                 }
                 ToastUtil.showShort(message)
+            }
+            onStart {
+                if (!loadingDialog.isShowing) {
+                    loadingDialog.show()
+                }
+            }
+            onFinish {
+                loadingDialog.dismiss()
             }
         }
     }

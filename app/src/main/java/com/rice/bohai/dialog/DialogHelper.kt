@@ -11,6 +11,8 @@ import com.rice.bohai.R
 import com.rice.bohai.adapter.SelectCardAdapter
 import com.rice.bohai.model.CardModel
 import kotlinx.android.synthetic.main.item_dialog_select_card.view.*
+import kotlinx.android.synthetic.main.item_dialog_single.view.*
+import me.jessyan.autosize.utils.ScreenUtils
 
 /**
  * @author CWQ
@@ -49,6 +51,36 @@ object DialogHelper {
                 setWindowAnimations(R.style.AnimBottomIn)
                 attributes.width = WindowManager.LayoutParams.MATCH_PARENT
             }
+            dialog
+        } else {
+            null
+        }
+    }
+
+
+    fun getSingleDialog(
+        context: Context?,
+        title: String,
+        content: String,
+        listener: View.OnClickListener
+    ): Dialog? {
+        return if (context != null) {
+            val dialog = Dialog(context, R.style.translateDialog)
+            val view: View =
+                LayoutInflater.from(context).inflate(R.layout.item_dialog_single, null)
+            with(view) {
+                tv_dialog_title.text = title
+                tv_dialog_content.text = content
+                tv_dialog_btn.setOnClickListener(listener)
+            }
+            dialog.setContentView(view)
+            dialog.window?.apply {
+                setGravity(Gravity.CENTER)
+                val size = ScreenUtils.getScreenSize(context)
+                attributes.width = (size[0] * 0.8).toInt()
+            }
+            dialog.setCanceledOnTouchOutside(false)
+//            dialog.setCancelable(false)
             dialog
         } else {
             null

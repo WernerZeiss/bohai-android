@@ -1,7 +1,9 @@
 package com.rice.bohai.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fangtao.ftlibrary.gson.StringNullAdapter
@@ -12,22 +14,23 @@ import com.rice.base.BaseImmersionFragment
 import com.rice.bohai.Constant
 import com.rice.bohai.MyApplication
 import com.rice.bohai.R
-import com.rice.bohai.activity.BuyHistoryActivity
-import com.rice.bohai.activity.LoginActivity
-import com.rice.bohai.activity.PintuanMXActivity
-import com.rice.bohai.activity.XieyiActivity
+import com.rice.bohai.activity.*
 import com.rice.bohai.adapter.PintuanBannerAdapter
 import com.rice.bohai.adapter.ProducePintuanAdapter
 import com.rice.bohai.anim.ScalePageTransformer
 import com.rice.bohai.dialog.CommonDialog
+import com.rice.bohai.dialog.DialogHelper
 import com.rice.bohai.model.PintuanOrderListModel
 import com.rice.bohai.model.PintuanOrderModel
 import com.rice.bohai.model.PintuanProcessModel
 import com.rice.bohai.model.PintuanProduceDeModel
+import com.rice.bohai.tools.ClickUtils
+import com.rice.dialog.RLoadingDialog
 import com.rice.racar.web.RiceHttpK
 import com.rice.tool.ActivityUtils
 import com.rice.tool.TextUtils
 import com.rice.tool.ToastUtil
+import kotlinx.android.synthetic.main.fragment_guamai.*
 import kotlinx.android.synthetic.main.fragment_pintuan.*
 
 class PintuanFragment : BaseImmersionFragment() {
@@ -39,11 +42,15 @@ class PintuanFragment : BaseImmersionFragment() {
     var isloaded = false
     var price = ""
     var isAutoEnable = true
+    var enableBuy = true
+    lateinit var loadingDialog: RLoadingDialog
+    var authDialog: Dialog? = null
 
     override val contentViewLayoutID: Int
         get() = R.layout.fragment_pintuan
 
     override fun initView() {
+        loadingDialog = RLoadingDialog(mContext, true)
         textview_chaxun.setOnClickListener() {
             ActivityUtils.openActivity(mContext, BuyHistoryActivity::class.java)
         }
@@ -51,14 +58,20 @@ class PintuanFragment : BaseImmersionFragment() {
             ActivityUtils.openActivity(mContext, PintuanMXActivity::class.java)
         }
         textBuyNow.setOnClickListener() {
+            if (!enableBuy || !ClickUtils.enableClick()) {
+                return@setOnClickListener
+            }
             var msg = "请确认是否花费${price}购买怀匠·茅台大汉玉液"
             var dialog = CommonDialog(mContext, msg)
             dialog.onCallback = object : CommonDialog.OnCallback {
                 override fun okClick() {
                     val price = MyApplication.instance.userInfo?.price
-                    if (!TextUtils.isEmpty(price) && price!!.toDouble() > 0){
-                        buy()
-                    }else{
+                    if (!TextUtils.isEmpty(price) && price!!.toDouble() > 0) {
+                        if (enableBuy) {
+                            enableBuy = false
+                            buy()
+                        }
+                    } else {
                         ToastUtil.showShort("账户余额不足~")
                     }
                 }
@@ -74,6 +87,9 @@ class PintuanFragment : BaseImmersionFragment() {
                 }
             }
             dialog.show()
+        }
+        tv_auth_btn.setOnClickListener {
+            ActivityUtils.openActivity(mContext, BindBankCardActivity::class.java)
         }
 
         recyclerProducts.layoutManager = LinearLayoutManager(mContext)
@@ -167,6 +183,11 @@ class PintuanFragment : BaseImmersionFragment() {
             ActivityUtils.openActivity(mContext, LoginActivity::class.java)
             return
         }
+        if (MyApplication.instance.userInfo?.is_valid == 0) {
+            ll_auth.visibility = View.VISIBLE
+            return
+        }
+        ll_auth.visibility = View.GONE
         if (!isloaded) {
             isloaded = true
 
@@ -176,14 +197,14 @@ class PintuanFragment : BaseImmersionFragment() {
             }
             checkbox.isChecked = isauto
             checkbox.setOnCheckedChangeListener() { compoundButton: CompoundButton, b: Boolean ->
-                Log.i("hel->", "checkbox onchecked to ${b}")
+//                Log.i("hel->", "checkbox onchecked to ${b}")
                 autoAddPintuan()
             }
         }
         initPintuanProcess()
         initPintuanList()
-
     }
+
 
     private fun initPintuanProcess() {
         Http.post {
@@ -192,9 +213,8 @@ class PintuanFragment : BaseImmersionFragment() {
                 "access_token" - MyApplication.instance.userInfo!!.access_token
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 val result = RiceHttpK.getResult(mContext, byts)
-                Log.i("hel->", result)
+                Log.i("get-group-order-info->", result)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: PintuanProcessModel = StringNullAdapter.gson.fromJson(result)
                     textview_count.text = model.total_winning
@@ -231,10 +251,8 @@ class PintuanFragment : BaseImmersionFragment() {
                 "page" - page.toString()
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 producePintuanAdapter.setEmptyView(R.layout.include_no_data)
                 val result = RiceHttpK.getResult(mContext, byts)
-                Logger.i("hel->${result}")
                 if (TextUtils.isNotEmpty(result)) {
                     val model: PintuanOrderListModel = StringNullAdapter.gson.fromJson(result)
                     if (page == 1) {
@@ -267,12 +285,16 @@ class PintuanFragment : BaseImmersionFragment() {
                 "access_token" - MyApplication.instance.userInfo!!.access_token
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
+                MyApplication.instance.getUserInfoFromWeb()
                 val result = RiceHttpK.getResult(mContext, byts)
-                Logger.i("hel->${result}")
-                page = 1
-                initPintuanList()
-                ToastUtil.showLong("购买成功")
+//                Logger.i("buy-goods-now,result->${result}")
+                if (!TextUtils.isEmpty(result)){
+                    ToastUtil.showLong("购买成功")
+                }else{
+                    page = 1
+                    initPintuanList()
+                }
+                enableBuy = true
             }
             onFail { error ->
                 var message = error.message
@@ -281,6 +303,15 @@ class PintuanFragment : BaseImmersionFragment() {
                     message = "未知错误"
                 }
                 ToastUtil.showShort(message)
+                enableBuy = true
+            }
+            onStart {
+                if (!loadingDialog.isShowing) {
+                    loadingDialog.show()
+                }
+            }
+            onFinish {
+                loadingDialog.dismiss()
             }
         }
     }
@@ -296,13 +327,12 @@ class PintuanFragment : BaseImmersionFragment() {
                 "access_token" - MyApplication.instance.userInfo!!.access_token
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 val result = RiceHttpK.getResult(mContext, byts)
-                Logger.i("hel->${result}")
+//                Logger.i("hel->${result}")
                 if (result == "") {
                     isAutoEnable = false
                     checkbox.isChecked = !checkbox.isChecked
-                    Log.i("hel->AAA", "result is ''")
+//                    Log.i("hel->AAA", "result is ''")
                 }
                 // 重启获取get-user接口，initPintuanList中Adapter会用到
                 MyApplication.instance.onUserInfoUpdateCompleteListener =
@@ -333,9 +363,8 @@ class PintuanFragment : BaseImmersionFragment() {
                 "order_id" - order_id
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 val result = RiceHttpK.getResult(mContext, byts)
-                Logger.i("hel->${result}")
+                Logger.i("add-group-buy->${result}")
                 if (TextUtils.isNotEmpty(result)) {
                     page = 1
                     initPintuanList()
