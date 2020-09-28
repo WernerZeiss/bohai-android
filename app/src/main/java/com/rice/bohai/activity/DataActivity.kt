@@ -322,7 +322,6 @@ class DataActivity : RiceBaseActivity() {
                 refresh.finishLoadMore()
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 shareBGAdapter.setEmptyView(R.layout.include_no_data)
                 val result = RiceHttpK.getResult(mContext, byts)
                 if (TextUtils.isNotEmpty(result)) {

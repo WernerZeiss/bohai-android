@@ -173,7 +173,6 @@ class MyOrderFragment : BaseImmersionFragment() {
                 }
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 myOrderAdapter.setEmptyView(R.layout.include_no_data)
                 val result = RiceHttpK.getResult(mContext,byts)
                 if (TextUtils.isNotEmpty(result)) {

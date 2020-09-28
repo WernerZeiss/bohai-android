@@ -78,7 +78,7 @@ class MyScoreActivity : RiceBaseActivity() {
     }
 
     override fun initView() {
-        toolbar.imgOk.setImageDrawable(resources.getDrawable(R.drawable.shopcar))
+//        toolbar.imgOk.setImageDrawable(resources.getDrawable(R.drawable.shopcar))
         toolbar.setOnOkClickListener() {
             ActivityUtils.openActivity(this, ShopcarActivity::class.java)
         }

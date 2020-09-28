@@ -55,6 +55,9 @@ class OrderInfoActivity : RiceBaseActivity() {
             textAddress.text = model?.order_info?.address_address
             textTransportCode.text = model?.logistic_number
             textInfo.text = "订单编号：${model?.order_number}\n创建时间：${model?.created_at}"
+            if (!TextUtils.isEmpty(model?.remark)){
+                tv_remark.text = "用户备注："+model?.remark
+            }
             if (model?.good_status == 2) {
                 llWLBH.visibility = View.VISIBLE
             } else {
@@ -80,11 +83,11 @@ class OrderInfoActivity : RiceBaseActivity() {
                 "order_number" - order_number
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 if (::produceInfoBigAdapter.isInitialized) {
                     produceInfoBigAdapter.setEmptyView(R.layout.include_no_data)
                 }
                 val result = RiceHttpK.getResult(mContext,byts)
+                Log.i("OrderInfoActivity->", "initData:"+result)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: OrderDeModel = StringNullAdapter.gson.fromJson(result)
                     this@OrderInfoActivity.model = model.order

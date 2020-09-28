@@ -18,14 +18,14 @@ class ProduceInfoBigAdapter(var context: Context, data: MutableList<OrderModel.O
     override fun convert(helper: BaseViewHolder, bean: OrderModel.OrderInfo.ProductInfo) {
         helper.setText(R.id.textName, bean.product_name)
         helper.setText(R.id.textCode, bean.number.toString() + bean.unit)
-        var price = ""
-        if (bean.price == "0.00") {
-            price = bean.integral + "积分"
-        } else if (bean.integral == "0" || bean.integral == "0.00") {
-            price = mContext.resources.getString(R.string.CNY) + bean.price
-        } else {
-            price = mContext.resources.getString(R.string.CNY) + bean.price + "+" + bean.integral + "积分"
-        }
+        var price = mContext.resources.getString(R.string.CNY) + bean.price
+//        if (bean.price == "0.00") {
+//            price = bean.integral + "积分"
+//        } else if (bean.integral == "0" || bean.integral == "0.00") {
+//            price = mContext.resources.getString(R.string.CNY) + bean.price
+//        } else {
+//            price = mContext.resources.getString(R.string.CNY) + bean.price + "+" + bean.integral + "积分"
+//        }
         helper.setText(R.id.textPrice, price)
         var img = helper.getView<ImageView>(R.id.img)
         GlideLoadUtils.getInstance().glideLoad(mContext, TextUtils.getImgUrl(Constant.getBaseUrl(), bean.image),

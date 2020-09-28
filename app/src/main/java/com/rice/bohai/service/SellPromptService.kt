@@ -34,9 +34,9 @@ class SellPromptService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         dialog = SellSuccessDialog(context!!)
-        if (intent != null && isFirst) {
-            start()
-        }
+//        if (intent != null && isFirst) {
+//            start()
+//        }
         return super.onStartCommand(intent, flags, startId)
     }
 

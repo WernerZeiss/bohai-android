@@ -122,11 +122,11 @@ class PintuanFragment : BaseImmersionFragment() {
             }
         recyclerProducts.adapter = producePintuanAdapter
 
-        smr.setEnableRefresh(false)
-//        smr.setOnRefreshListener {
-//            page = 1
-//            initPintuanList()
-//        }
+        smr.setEnableRefresh(true)
+        smr.setOnRefreshListener {
+            page = 1
+            initPintuanList()
+        }
         smr.setOnLoadMoreListener {
             page++
             initPintuanList()
@@ -202,6 +202,7 @@ class PintuanFragment : BaseImmersionFragment() {
             }
         }
         initPintuanProcess()
+        page = 1
         initPintuanList()
     }
 
@@ -214,7 +215,7 @@ class PintuanFragment : BaseImmersionFragment() {
             }
             onSuccess { byts ->
                 val result = RiceHttpK.getResult(mContext, byts)
-                Log.i("get-group-order-info->", result)
+//                Log.i("get-group-order-info->", result)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: PintuanProcessModel = StringNullAdapter.gson.fromJson(result)
                     textview_count.text = model.total_winning
@@ -287,10 +288,8 @@ class PintuanFragment : BaseImmersionFragment() {
             onSuccess { byts ->
                 MyApplication.instance.getUserInfoFromWeb()
                 val result = RiceHttpK.getResult(mContext, byts)
-//                Logger.i("buy-goods-now,result->${result}")
                 if (!TextUtils.isEmpty(result)){
                     ToastUtil.showLong("购买成功")
-                }else{
                     page = 1
                     initPintuanList()
                 }
@@ -328,11 +327,9 @@ class PintuanFragment : BaseImmersionFragment() {
             }
             onSuccess { byts ->
                 val result = RiceHttpK.getResult(mContext, byts)
-//                Logger.i("hel->${result}")
                 if (result == "") {
                     isAutoEnable = false
                     checkbox.isChecked = !checkbox.isChecked
-//                    Log.i("hel->AAA", "result is ''")
                 }
                 // 重启获取get-user接口，initPintuanList中Adapter会用到
                 MyApplication.instance.onUserInfoUpdateCompleteListener =

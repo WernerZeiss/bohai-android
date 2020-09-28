@@ -284,6 +284,7 @@
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:text="加入购物车"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="14sp" />
 

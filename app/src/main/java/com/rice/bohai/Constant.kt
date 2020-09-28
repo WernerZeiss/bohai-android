@@ -133,6 +133,8 @@ class Constant {
         const val GET_MY_BANK_CARD_LIST = "get-my-bank-card-list"//获取银行卡列表
         const val DEFAULT_BANK = "default-bank"//设置默认银行卡
         const val REAL_NAME = "real-name"//新版两要素实名认证
+        const val GET_WALLET_LOG = "get-wallet-log"//待领取红包列表
+        const val GET_WALLET_NOW = "get-wallet-now"//领取
 
         const val REQUEST_SELECT_ADDRESS = 0x00001 //选择收货地址
         const val REQUEST_SELECT_ORDER = 0x00002 //选择订单

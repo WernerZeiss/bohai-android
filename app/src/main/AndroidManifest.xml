@@ -236,6 +236,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.PictureActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RedPacketListActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".service.SellPromptService"

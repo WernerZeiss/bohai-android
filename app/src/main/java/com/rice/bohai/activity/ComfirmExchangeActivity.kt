@@ -398,6 +398,7 @@ class ConfirmExchangeActivity : RiceBaseActivity() {
                 "number" - num.toString()
                 "address_id" - address_id
                 "sign_image" - sign_image
+                "remark" - et_remark.text.toString().trim()
             }
             onSuccess { bytes ->
                 var data = bytes.toString(Charset.defaultCharset())

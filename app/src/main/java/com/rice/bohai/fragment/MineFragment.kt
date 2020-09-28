@@ -268,10 +268,10 @@ class MineFragment : BaseImmersionFragment() {
         //            b.putInt("mode", ZHSZFragment.MODE_XJZH)
         //            ActivityUtils.openActivity(mContext, MyAccountActivity::class.java, b)
         //        }
-        textBtn.setOnClickListener {
-            //充值
-            ActivityUtils.openActivity(mContext, RechargeActivity::class.java)
-        }
+//        textBtn.setOnClickListener {
+//            //充值
+//            ActivityUtils.openActivity(mContext, RechargeActivity::class.java)
+//        }
         textBtn2.setOnClickListener {
             //提现
             ActivityUtils.openActivity(mContext, CashoutActivity::class.java)
@@ -311,6 +311,11 @@ class MineFragment : BaseImmersionFragment() {
         //            }
         //            ActivityUtils.openActivity(mContext, WDCCActivity::class.java) //←以前叫我的持仓
         //        }
+
+        iv_tem_money.setOnClickListener {
+            //点击领取 待领取金额
+            ActivityUtils.openActivity(mContext, RedPacketListActivity::class.java)
+        }
         llWDSP.setOnClickListener {
             //我的商品
             if (MyApplication.instance.userInfo == null || TextUtils.isEmpty(MyApplication.instance.userInfo!!.access_token)) {
@@ -508,6 +513,11 @@ class MineFragment : BaseImmersionFragment() {
         textStatus.text = MyApplication.instance.userInfo?.is_effective_user_name
         textXianjin.text =
                 mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.price
+        if (!TextUtils.isEmpty(MyApplication.instance.userInfo?.need_wallet_money)){
+            tv_tem_money.text = mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.need_wallet_money
+        }else{
+            tv_tem_money.text = mContext.resources.getString(R.string.CNY) + "0.00"
+        }
         //        textJiaoshou.text = mContext.resources.getString(R.string.CNY) + NumberUtils.缩写数字(
         //            MyApplication.instance.userInfo?.total_settlement_price,
         //            100000.0

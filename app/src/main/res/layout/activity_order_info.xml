@@ -130,12 +130,22 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
                 android:lineSpacingExtra="12dp"
                 android:text="订单编号：   2019092915478\n创建时间：   2019-09-29  13:41:12"
                 android:textColor="#ff5b5b5b"
                 android:textSize="12sp" />
 
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:textSize="14sp"
+                android:textColor="@color/black3"
+                android:layout_marginEnd="16dp"
+                tools:text="用户备注：请包装好一点，不要摔碎了"/>
         </LinearLayout>
     </ScrollView>
 

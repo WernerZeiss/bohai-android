@@ -190,16 +190,25 @@
         android:layout_marginTop="13dp"
         android:background="@color/grayee" />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现时间为：工作日9:00-15:00"
+            android:textColor="#FF0A1A"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textBtnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/bg_btn_orange"
             android:gravity="center"
@@ -208,5 +217,5 @@
             android:text="立即提现"
             android:textColor="@color/white"
             android:textSize="18sp" />
-    </FrameLayout>
+    </LinearLayout>
 </LinearLayout>
