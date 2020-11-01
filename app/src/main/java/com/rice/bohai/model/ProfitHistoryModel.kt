@@ -23,5 +23,6 @@ data class ProfitHistoryModel(
         //1持仓中，2拼团中，3已拼团，4提货中，5已提货，6兑换积分，7转让中，8已转让
         var status_name: String = "", //状态文本
         var updated_at: String = "",
-        var user_id: Int = 0
+        var user_id: Int = 0,
+        var type_name:String = ""
 ) : Serializable

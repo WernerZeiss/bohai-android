@@ -29,6 +29,7 @@ class XSPHAdapter(var context: Context, data: MutableList<ProfitHistoryModel>) :
         helper.setGone(R.id.textBtnCancel, bean.status == 2 || bean.status == 7)
         helper.setGone(R.id.textBtnExtract, bean.status != 2 && bean.status != 7 && bean.profit_num.toDouble() >= 1.0)
         helper.setGone(R.id.textBtnExchange, bean.status != 2 && bean.status != 7)
+        helper.setText(R.id.tv_type,"类型："+bean.type_name)
 
         if (bean.profit_num.toDouble() >= 1.0) {
             helper.setText(R.id.textBtnSell, "转让")

@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.TextUtils
-import android.util.Log
 import com.fangtao.ftlibrary.gson.StringNullAdapter
 import com.github.salomonbrys.kotson.fromJson
 import com.ohmerhe.kolley.request.Http
@@ -15,7 +14,7 @@ import com.rice.bohai.Constant
 import com.rice.bohai.MyApplication
 import com.rice.bohai.R
 import com.rice.bohai.dialog.DialogHelper
-import com.rice.bohai.dialog.OnSelectCardListener
+import com.rice.bohai.listener.OnSelectCardListener
 import com.rice.bohai.model.CardListModel
 import com.rice.bohai.model.CardModel
 import com.rice.bohai.tools.ClickUtils
@@ -27,7 +26,6 @@ import com.rice.tool.DecimalDigitsInputFilter
 import com.rice.tool.ToastUtil
 import kotlinx.android.synthetic.main.activity_cashout.*
 import java.nio.charset.Charset
-import kotlin.math.log
 
 @SuppressLint("Registered")
 class CashoutActivity : RiceBaseActivity() {

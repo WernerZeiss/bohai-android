@@ -374,9 +374,9 @@ class XSPHFragment : BaseImmersionFragment() {
                 }
             }
             onSuccess { byts ->
-                Log.i("hel->", url)
                 xsphAdapter.setEmptyView(R.layout.include_no_data)
                 val result = RiceHttpK.getResult(mContext, byts)
+                Log.i("my-profit-record->", result)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: ProfitHistoryListModel = StringNullAdapter.gson.fromJson(result)
                     if (page == 1) {

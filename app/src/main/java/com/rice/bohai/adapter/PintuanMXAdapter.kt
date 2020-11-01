@@ -15,7 +15,7 @@ class PintuanMXAdapter(var context: Context, data: MutableList<PintuanMxModel>) 
         if (bean.status == "2") {
             helper.setText(R.id.textType, "成功")
         } else if (bean.status == "3") {
-            helper.setText(R.id.textType, "失败")
+            helper.setText(R.id.textType, "感谢参与")
         }
         helper.setText(R.id.textName, bean.name)
     }

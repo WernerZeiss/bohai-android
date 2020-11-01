@@ -1,4 +1,4 @@
-package com.rice.bohai.dialog
+package com.rice.bohai.listener
 
 import com.rice.bohai.model.CardModel
 

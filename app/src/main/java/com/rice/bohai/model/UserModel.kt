@@ -40,5 +40,8 @@ data class UserModel(
     var is_sign_task: Int = 0, //是否同意了上上签协议
     var p_open_auto_group: Int = 0,
     var agreement_doc:String = "",//数字证书协议
-    var need_wallet_money:String = ""//待领取金额
+    var need_wallet_money:String = "",//待领取金额
+    var group_wallet_money:String = "",//购物券余额
+    var storage_ticket:String = "",//仓储券
+    var is_group_buy_ticket:Int = 0//1显示购货券购买选项 0不显示
 ) : Serializable

@@ -36,7 +36,6 @@ import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_mine.*
-import kotlinx.android.synthetic.main.fragment_pintuan.*
 import java.nio.charset.Charset
 
 class MineFragment : BaseImmersionFragment() {
@@ -272,10 +271,8 @@ class MineFragment : BaseImmersionFragment() {
 //            //充值
 //            ActivityUtils.openActivity(mContext, RechargeActivity::class.java)
 //        }
-        textBtn2.setOnClickListener {
-            //提现
-            ActivityUtils.openActivity(mContext, CashoutActivity::class.java)
-        }
+
+
         //        llPHZH.setOnClickListener {
         //            //提货金额
         //            if (MyApplication.instance.userInfo == null || TextUtils.isEmpty(MyApplication.instance.userInfo!!.access_token)) {
@@ -312,7 +309,19 @@ class MineFragment : BaseImmersionFragment() {
         //            ActivityUtils.openActivity(mContext, WDCCActivity::class.java) //←以前叫我的持仓
         //        }
 
-        iv_tem_money.setOnClickListener {
+        tv_jump_gwq.setOnClickListener {
+            //查看购货券
+            ActivityUtils.openActivity(mContext, StorageBuyCouponActivity::class.java,Bundle().apply { putInt("dataType",1) })
+        }
+        tv_jump_ccq.setOnClickListener {
+            //查看仓储券
+            ActivityUtils.openActivity(mContext, StorageBuyCouponActivity::class.java,Bundle().apply { putInt("dataType",0) })
+        }
+        tv_jump_balance.setOnClickListener {
+            //提现
+            ActivityUtils.openActivity(mContext, CashoutActivity::class.java)
+        }
+        tv_jump_redpacket.setOnClickListener {
             //点击领取 待领取金额
             ActivityUtils.openActivity(mContext, RedPacketListActivity::class.java)
         }
@@ -511,13 +520,16 @@ class MineFragment : BaseImmersionFragment() {
         //            100000.0
         //        )
         textStatus.text = MyApplication.instance.userInfo?.is_effective_user_name
-        textXianjin.text =
-                mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.price
-        if (!TextUtils.isEmpty(MyApplication.instance.userInfo?.need_wallet_money)){
-            tv_tem_money.text = mContext.resources.getString(R.string.CNY) + MyApplication.instance.userInfo?.need_wallet_money
-        }else{
-            tv_tem_money.text = mContext.resources.getString(R.string.CNY) + "0.00"
-        }
+
+        //购货券
+        tv_mine_gwq_money.text = "¥" + MyApplication.instance.userInfo?.group_wallet_money
+        //仓储券
+        tv_mine_ccq_money.text = "¥" + MyApplication.instance.userInfo?.storage_ticket
+        //账户余额
+        tv_mine_balance_money.text = "¥" + MyApplication.instance.userInfo?.price
+        //待领取红包
+        tv_mine_redpacket_money.text = "¥" + MyApplication.instance.userInfo?.need_wallet_money
+
         //        textJiaoshou.text = mContext.resources.getString(R.string.CNY) + NumberUtils.缩写数字(
         //            MyApplication.instance.userInfo?.total_settlement_price,
         //            100000.0
@@ -531,15 +543,7 @@ class MineFragment : BaseImmersionFragment() {
         } else {
             point.visibility = View.INVISIBLE
         }
-        //        textView.setOnClickListener {
-        //            //TODO:测试语句
-        //            if (MyApplication.instance.userInfo?.member_name!!.toInt() <5) {
-        //                MyApplication.instance.userInfo?.member_name = (MyApplication.instance.userInfo?.member_name!!.toInt() + 1).toString()
-        //            } else {
-        //                MyApplication.instance.userInfo?.member_name = "0"
-        //            }
-        //            initData()
-        //        }
+
         textView.background = resources.getDrawable(
                 ResHelper.getResId(
                         "bg_vip${MyApplication.instance.userInfo?.member_name ?: "0"}",
@@ -552,10 +556,7 @@ class MineFragment : BaseImmersionFragment() {
         } else {
             imgHeader.setImageResource(R.mipmap.ic_launcher_round)
         }
-        //        val onClickListener = View.OnClickListener {
-        //            //改头像
-        //            ImageSelector.getInstance(this@EditMineInfoActivity).showImageSelectMenu()
-        //        }
+
         textName.setOnClickListener {
             if (MyApplication.instance.userInfo != null && TextUtils.isNotEmpty(MyApplication.instance.userInfo!!.access_token)) {
                 //改昵称
@@ -566,11 +567,11 @@ class MineFragment : BaseImmersionFragment() {
                 ActivityUtils.openActivity(mContext, LoginActivity::class.java)
             }
         }
+
         imgHeader.setOnClickListener {
             //改头像
             if (MyApplication.instance.userInfo != null && TextUtils.isNotEmpty(MyApplication.instance.userInfo!!.access_token)) {
                 ImageSelector.getInstance(this@MineFragment).showImageSelectMenu()
-//                test()
             } else {
                 ActivityUtils.openActivity(mContext, LoginActivity::class.java)
             }

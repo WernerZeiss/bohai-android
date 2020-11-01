@@ -85,6 +85,9 @@ class MyAccountActivity : RiceBaseActivity() {
             }
         }
         MyApplication.instance.getUserInfoFromWeb()
+        if (mode == MODE_XSPH){
+            xsphFragment.initData()
+        }
     }
 
     /**

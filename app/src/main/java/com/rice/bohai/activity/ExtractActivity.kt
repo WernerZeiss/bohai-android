@@ -77,7 +77,7 @@ class ExtractActivity : RiceBaseActivity() {
         when (mode) {
             MODE_NORMOL -> {
                 //普通提货
-                textNumber.text = "提货数量：${maxNumber}"
+//                textNumber.text = "提货数量：${maxNumber}"
                 textNumber.visibility = View.VISIBLE
                 textFare.visibility = View.VISIBLE
                 editRemarks.visibility = View.VISIBLE
@@ -205,7 +205,8 @@ class ExtractActivity : RiceBaseActivity() {
         Http.post {
             when (mode) {
                 MODE_NORMOL -> {
-                    url = RiceHttpK.getUrl(Constant.POSITION_PICK_UP)
+//                    url = RiceHttpK.getUrl(Constant.POSITION_PICK_UP)
+                    url = RiceHttpK.getUrl(Constant.MY_PROFIT_POSITION_PICK_UP)
                 }
                 MODE_THQ -> {
                     url = RiceHttpK.getUrl(Constant.PICK_UP_SETTLEMENT)
@@ -216,8 +217,8 @@ class ExtractActivity : RiceBaseActivity() {
                 "address_id" - address_id
                 when (mode) {
                     MODE_NORMOL -> {
-                        "position_id" - position_id
-                        "number" - maxNumber.toString()
+                        "profit_position_id" - position_id
+//                        "number" - maxNumber.toString()
                         "remark" - editRemarks.text.toString()
                     }
                     MODE_THQ -> {
@@ -228,6 +229,7 @@ class ExtractActivity : RiceBaseActivity() {
             }
             onSuccess { bytes ->
                 var data = bytes.toString(Charset.defaultCharset())
+                Log.e(url+"->",data)
                 var status = PublicModel.forjson(data)
                 ToastUtil.showShort(status.message)
                 if (status.code == RiceHttpK.SUCCESS) {

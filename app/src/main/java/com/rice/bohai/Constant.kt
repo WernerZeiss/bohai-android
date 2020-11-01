@@ -37,7 +37,7 @@ class Constant {
 
         const val BASE_URL_HAIBO = "https://haibo.ricecs.cn/api/v1/" //服务器地址
         const val BASE_URL_XHRD = "https://xhrdapp.scxhrd.com/api/v1/" //服务器地址
-        const val BASE_URL_XHRD_TEST = "https://test.scxhrd.com/api/v1/" //测试服地址
+        const val BASE_URL_XHRD_TEST = "https://bhw.xhrjkf.xyz/api/v1/" //测试服地址
         const val SYSTEM_CONFIG = "system-config" //系统配置参数
         const val GET_MOBILE_CODE = "get-mobile-code" //获取验证码
         const val REGISTER = "register" //注册
@@ -66,6 +66,7 @@ class Constant {
         const val ADDRESS_LIST = "address-list" //地址列表
         const val AREA_LIST = "area-list" //省市区数据
         const val POSITION_PICK_UP = "position-pick-up" //订单提货
+        const val MY_PROFIT_POSITION_PICK_UP = "my-profit-position-pick-up" //订单提货
         const val POSITION_PICK_UP_GET_FREIGHT_PRICE =
             "position-pick-up-get-freight-price" //订单提货计算运费
         const val INTEGRAL_PRODUCT_LIST = "integral-product-list" //积分商城列表
@@ -135,6 +136,13 @@ class Constant {
         const val REAL_NAME = "real-name"//新版两要素实名认证
         const val GET_WALLET_LOG = "get-wallet-log"//待领取红包列表
         const val GET_WALLET_NOW = "get-wallet-now"//领取
+        const val GET_GHQ_LOG = "get-all-group-buy-log"//获取购货券明细
+        const val GET_AVAILABLE_GHQ_LOG = "get-group-buy-log"//获取未领取的购货券明细
+        const val GET_GROUP_BUY_NOW = "get-group-buy-now"//领取个人购货券到个人购货券余额
+        const val GROUP_PICK_UP = "group-pick-up"//购货券提货
+        const val GET_STORAGE_TICKET_LOG = "get-storage-ticket-log"//仓储券明细列表
+        const val GROUP_BUY_TICKET_RULE = "group-buy-ticket-rule"//购货券规则
+        const val STORAGE_TICKET_RULE = "storage-ticket-rule"//仓储券规则
 
         const val REQUEST_SELECT_ADDRESS = 0x00001 //选择收货地址
         const val REQUEST_SELECT_ORDER = 0x00002 //选择订单

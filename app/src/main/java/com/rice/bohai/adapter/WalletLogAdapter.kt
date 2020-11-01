@@ -15,7 +15,7 @@ class WalletLogAdapter(var context: Context, data: MutableList<WalletLogModel>) 
 
     override fun convert(helper: BaseViewHolder?, item: WalletLogModel?) {
 
-        helper?.setText(R.id.tv_title, "现金类型：" + if (item?.type == 26) "释放储备券" else "拼团失败返还")
+        helper?.setText(R.id.tv_title, "现金类型：" + if (item?.type == 26) "释放储备券" else "释放仓储券")
         helper?.setText(R.id.tv_date, item?.created_at)
         helper?.setText(R.id.tv_money, "¥" + item?.price)
     }

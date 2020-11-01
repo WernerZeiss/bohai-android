@@ -9,6 +9,7 @@ import com.orhanobut.logger.Logger
 import com.rice.bohai.MyApplication
 import com.rice.bohai.activity.LoginActivity
 import com.rice.bohai.activity.RechargeActivity
+import com.rice.bohai.dialog.DialogHelper
 import com.rice.dialog.OkCancelDialog
 import com.rice.tool.ActivityUtils
 import com.rice.tool.ToastUtil
@@ -116,6 +117,61 @@ class RiceHttpK {
             }
         }
 
+
+        fun getResultForPinTuan(mContext: Context, bytes: ByteArray): String {
+            var data = bytes.toString(Charset.defaultCharset())
+            var status = PublicModel.forjson(data)
+            Logger.i("hel->${data}")
+            when (status.code) { //根据状态码判断结果
+                SUCCESS -> { //成功
+                    return status.data
+                }
+                FAIL -> { //失败
+                    showTipMsg(mContext,status.message)
+                    return ""
+                }
+                NO_TOKEN -> { //token掉了
+                    ToastUtil.showShort("请先登录")
+                    MyApplication.instance.clear()
+                    var intent = Intent(MyApplication.instance, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    var b = Bundle()
+                    b.putBoolean("toMain", true)
+                    intent.putExtras(b)
+                    MyApplication.instance.startActivity(intent)
+                    return ""
+                }
+                show_me_the_money -> {
+                    //余额不足
+                    if (MyApplication.instance.userInfo?.is_start_recharge == 1) {
+                        val notEnoughMoneyDialog = OkCancelDialog(mContext)
+                        notEnoughMoneyDialog.setOkText("前往充值")
+                        notEnoughMoneyDialog.onOkClickListener = object : OkCancelDialog.OnOkClickListener {
+                            override fun onOkClick() {
+                                ActivityUtils.openActivity(mContext, RechargeActivity::class.java)
+                            }
+                        }
+                        notEnoughMoneyDialog.setInfo(status.message)
+                        notEnoughMoneyDialog.show()
+                    } else {
+                        ToastUtil.showShort(status.message)
+                    }
+                    return ""
+                }
+                else -> {
+                    return ""
+                }
+            }
+        }
+
+
+        private fun showTipMsg(context: Context,content: String) {
+            val tipDialog = DialogHelper.getSingleDialog(
+                context,
+                "温馨提示", content, null
+            )
+            tipDialog?.show()
+        }
     }
 
 }

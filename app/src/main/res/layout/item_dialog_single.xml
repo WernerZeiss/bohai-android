@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="50dp"
-    android:layout_marginRight="50dp"
     android:background="@drawable/bg_dialog_sign"
+    android:paddingLeft="12dp"
     android:paddingTop="35dp"
+    android:paddingRight="12dp"
     android:paddingBottom="45dp">
 
     <TextView
@@ -32,23 +32,45 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_dialog_title"
-        tools:text="您尚未实名认证，暂无权限查看此页面" />
+        tools:text="您尚未实名认证，暂无权限查看此页面您尚未实名认证，暂无权限查看此页面您尚未实名认证，暂无权限查看此页面" />
 
-    <TextView
-        android:id="@+id/tv_dialog_btn"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:background="@drawable/bg_btn_orange"
-        android:gravity="center"
-        android:paddingLeft="35dp"
-        android:paddingTop="8dp"
-        android:paddingRight="35dp"
-        android:paddingBottom="8dp"
-        android:text="确定"
-        android:textColor="@color/white"
-        android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_dialog_content" />
+        app:layout_constraintTop_toBottomOf="@id/tv_dialog_content">
+
+        <TextView
+            android:id="@+id/tv_dialog_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/bg_e5e5e5_5"
+            android:gravity="center"
+            android:paddingLeft="35dp"
+            android:paddingTop="8dp"
+            android:paddingRight="35dp"
+            android:paddingBottom="8dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_dialog_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_orange"
+            android:gravity="center"
+            android:paddingLeft="35dp"
+            android:paddingTop="8dp"
+            android:paddingRight="35dp"
+            android:paddingBottom="8dp"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

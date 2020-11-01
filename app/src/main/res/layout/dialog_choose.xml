@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:gravity="center"
-            android:text="失败"
+            android:text="感谢参与"
             android:textColor="#1676EF"
             android:textSize="19sp" />
     </LinearLayout>

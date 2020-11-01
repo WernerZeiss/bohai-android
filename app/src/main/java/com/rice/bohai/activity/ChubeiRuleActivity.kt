@@ -20,22 +20,29 @@ import kotlinx.android.synthetic.main.activity_chubei_rule.*
 
 class ChubeiRuleActivity : RiceBaseActivity() {
 
+    //-1储备规则 0仓储券规则 1购货券规则
+    private var ruleType = -1
+
     override fun getLayoutId(): Int {
         return R.layout.activity_chubei_rule
     }
 
     override fun initView() {
-        Http.post {
-            url =
-                RiceHttpK.getUrl(Constant.CHUBEI_RULE)
+        val ruleUrl = when(ruleType){
+            0 -> RiceHttpK.getUrl(Constant.STORAGE_TICKET_RULE)
+            1 -> RiceHttpK.getUrl(Constant.GROUP_BUY_TICKET_RULE)
+            else -> RiceHttpK.getUrl(Constant.CHUBEI_RULE)
+        }
+        Http.get {
+            url = ruleUrl
             onSuccess { byts ->
-                Log.i("hel->", url)
                 val result = RiceHttpK.getResult(mContext, byts)
+//                Log.i("$url:->", result)
                 if (TextUtils.isNotEmpty(result)) {
                     val model: ChubeiRuleListModel = StringNullAdapter.gson.fromJson(result)
                     val models: ArrayList<ChubeiRuleModel> =
                         model.rules_list as ArrayList<ChubeiRuleModel>
-                    if (models.size >= 2) {
+                    if (models.size >= 1) {
                         if (Build.VERSION.SDK_INT >= 24) {
                             textview_chubei_01.text =
                                 Html.fromHtml(models[0].title, FROM_HTML_MODE_COMPACT)
@@ -43,30 +50,37 @@ class ChubeiRuleActivity : RiceBaseActivity() {
                             textview_chubei_01.text =
                                 Html.fromHtml(models[0].title)
                         }
+                        val strBuilder0 = StringBuilder()
+                        for (str in models[0].rules) {
+                            strBuilder0.append("${str}<br/>");
+                        }
                         if (Build.VERSION.SDK_INT >= 24) {
                             textview_chubei_02.text =
-                                Html.fromHtml(models[0].rules[0], FROM_HTML_MODE_COMPACT)
+                                Html.fromHtml(strBuilder0.toString(), FROM_HTML_MODE_COMPACT)
                         } else {
                             textview_chubei_02.text =
-                                Html.fromHtml(models[0].rules[0])
+                                Html.fromHtml(strBuilder0.toString())
                         }
-                        if (Build.VERSION.SDK_INT >= 24) {
-                            textview_chubei_03.text =
-                                Html.fromHtml(models[1].title, FROM_HTML_MODE_COMPACT)
-                        } else {
-                            textview_chubei_03.text =
-                                Html.fromHtml(models[1].title)
-                        }
-                        val strBuilder = StringBuilder();
-                        for (str in models[1].rules) {
-                            strBuilder.append("${str}<br/>");
-                        }
-                        if (Build.VERSION.SDK_INT >= 24) {
-                            textview_chubei_04.text =
-                                Html.fromHtml(strBuilder.toString(), FROM_HTML_MODE_COMPACT)
-                        } else {
-                            textview_chubei_04.text =
-                                Html.fromHtml(strBuilder.toString())
+
+                        if (models.size > 1){
+                            if (Build.VERSION.SDK_INT >= 24) {
+                                textview_chubei_03.text =
+                                    Html.fromHtml(models[1].title, FROM_HTML_MODE_COMPACT)
+                            } else {
+                                textview_chubei_03.text =
+                                    Html.fromHtml(models[1].title)
+                            }
+                            val strBuilder1 = StringBuilder();
+                            for (str in models[1].rules) {
+                                strBuilder1.append("${str}<br/>");
+                            }
+                            if (Build.VERSION.SDK_INT >= 24) {
+                                textview_chubei_04.text =
+                                    Html.fromHtml(strBuilder1.toString(), FROM_HTML_MODE_COMPACT)
+                            } else {
+                                textview_chubei_04.text =
+                                    Html.fromHtml(strBuilder1.toString())
+                            }
                         }
                     }
                 }
@@ -83,6 +97,7 @@ class ChubeiRuleActivity : RiceBaseActivity() {
     }
 
     override fun getIntentData() {
+        ruleType = intent.getIntExtra("ruleType",-1)
     }
 
     override fun clear() {
